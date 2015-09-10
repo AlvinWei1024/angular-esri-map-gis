@@ -1,0 +1,42 @@
+{
+  "id":"2",
+  "type":"GIS",
+  "subType":"FeatureLayer",
+  "url":"http://services.arcgis.com/wlVTGRSYTzAbjjiC/ArcGIS/rest/services/ais_hawaii_basematerial2/FeatureServer/1",
+  "fields":[
+    {
+      "name":"OBJECTID",
+      "alis":"OBJECTID",
+      "type":"esriFieldTypeOID",
+      "unit":""
+    },
+    {
+      "name":"NAME",
+      "alis":"Name",
+      "type":"esriFieldTypeString",
+      "unit":""
+    },
+    {
+      "name":"Category ",
+      "alis":"Category",
+      "type":"esriFieldTypeString",
+      "unit":""
+    },
+    {
+      "name":"active ",
+      "alis":"active",
+      "type":"esriFieldTypeString",
+      "unit":""
+    }
+  ],
+  "displayTemplate":"a:{{a}},b:{{b}}",
+  "searchFields":[],
+  "charts":[
+    {
+      "type":"",
+      "name":"",
+      "fields":"",
+      "description":""
+    }
+  ]
+}

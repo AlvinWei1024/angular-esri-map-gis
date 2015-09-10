@@ -1,0 +1,35 @@
+<li class="hidden-xs" ng-class={dropdown:true,open:isOpen}>
+    <a data-toggle="dropdown" class="dropdown-toggle" aria-expanded="true"  ng-click="open()" title="地图标注">
+        <i class="fa fa-pencil-square-o"></i>
+    </a>
+    <ul class="dropdown-menu draw-tool" role="menu">
+        <li>地图标注</li>
+        <li class="divider"></li>
+        <li>
+            <div ng-click="activieDrawTool($event)">
+                <div>选择地图标注类型:</div>
+                <a title="POLYLINE">
+                    <span id="POLYLINE" class="fa polyline_" name="draw-tool"></span>
+                </a>
+                <a title="POLYGON">
+                    <span id="POLYGON" class="fa polygon_" name="draw-tool"></span>
+                </a>
+                <a title="CIRCLE">
+                    <span id="CIRCLE" class="fa circle_" name="draw-tool"></span>
+                </a>
+                <a title="RECTANGLE">
+                    <span id="RECTANGLE" class="fa rectangle_" name="draw-tool"></span>
+                </a>
+                <a title="ELLIPSE$">
+                    <span id="ELLIPSE" class="fa ellipse_" name="draw-tool"></span>
+                </a>
+                <a title="ARROW">
+                    <span id="ARROW" class="fa arrow_" name="draw-tool"></span>
+                </a>
+                <a title="RECTANGLE">
+                    <span id="GRAGHICS_CLEAR" class="fa graghics_clear_" name="draw-tool"></span>
+                </a>
+            </div>
+        </li>
+    </ul>
+</li>

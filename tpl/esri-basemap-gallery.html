@@ -1,0 +1,21 @@
+<li class="hidden-xs" ng-class={dropdown:true,open:isOpen}>
+    <a data-toggle="dropdown" class="dropdown-toggle" aria-expanded="true"  ng-click="open()" title="底图选择">
+        <i class="fa icon-layers"></i>
+    </a>
+    <ul class="dropdown-menu esri-basemap-gallery" role="menu">
+        <li>底图选择</li>
+        <li class="divider"></li>
+        <li>
+        	<div>
+        		<div ng-repeat="basemap in basemaps" class='esriBasemapGalleryNode'>
+        			<a href="javascript:void(0)" ng-click="changeBaseMap(basemap.index)">
+        				<img class="esriBasemapGalleryThumbnail" ng-src="{{basemap.thumbnailUrl}}" alt="{{basemap.title}}" title="{{basemap.title}}">
+        			</a>
+        			<div class='esriBasemapGalleryLabelContainer'>
+        				<span alt='{{basemap.title}}' title='{{basemap.title}}'>{{basemap.title}}</span>
+        			</div>
+        		</div>
+        	</div>
+        </li>
+    </ul>
+</li>

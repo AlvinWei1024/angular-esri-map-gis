@@ -1,0 +1,48 @@
+{
+  "id":"2",
+  "type":"GIS",
+  "subType":"ArcGISDynamicMapServiceLayer",
+  "url":"http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Petroleum/KGS_OilGasFields_Kansas/MapServer",
+  "fields":[
+    {
+      "name":"OBJECTID",
+      "alis":"OBJECTID",
+      "type":"esriFieldTypeOID",
+      "unit":""
+    },
+    {
+      "name":"ID",
+      "alis":"ID",
+      "type":"esriFieldTypeString",
+      "unit":""
+    },
+    {
+      "name":"NAME",
+      "alis":"Name",
+      "type":"",
+      "unit":""
+    },
+    {
+      "name":"LANDAREA ",
+      "alis":"Land Area in Square Miles",
+      "type":"esriFieldTypeDouble",
+      "unit":""
+    },
+    {
+      "name":"POPGRW0010 ",
+      "alis":"2000-2010 Population Annual Compound Growth Rate (U.S. Census)",
+      "type":"esriFieldTypeDouble",
+      "unit":""
+    }
+  ],
+  "displayTemplate":"a:{{a}},b:{{b}}",
+  "searchFields":[],
+  "charts":[
+    {
+      "type":"",
+      "name":"",
+      "fields":"",
+      "description":""
+    }
+  ]
+}

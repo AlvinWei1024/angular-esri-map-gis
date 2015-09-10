@@ -1,0 +1,226 @@
+.map-control{
+    position: relative;
+}
+.map-control .map{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.app-content-body {
+    float: left;
+    width: 100%;
+    padding-bottom:0;
+}
+.map-logo-false{
+    height: 50px;
+    width: 100px;
+    max-height: 50px!important;
+    padding: 0px;
+}
+.map-logo-true{
+    height: 30px;
+    width: 60px;
+    max-height: 30px!important;
+    padding: 0px;
+}
+.nav-logo > a, .nav-logo > a{
+    padding: 0px;
+    margin: 0px;
+}
+ ul.nav > li > a.auto {
+    padding: 10px;
+}
+ul.nav > li > ul.nav > li > a.auto {
+    margin-left: 0px;
+}
+@media (min-width: 768px) {
+    .app-aside,
+    .navbar-header {
+    width: 325px;
+    }
+    .navbar-collapse,
+    .app-content,
+    .app-footer {
+    margin-left: 325px;
+    }
+}
+.input-group{
+    width: 200px;
+}
+
+
+@media (min-width: 768px) {
+    .app-aside-folded .navi > ul > li > ul {
+        position: absolute;
+        top: 0 !important;
+        left: 100%;
+        z-index: 1050;
+        width: 200px;
+        height: auto !important;
+        -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        display: none;
+    }
+    .active > .nav-sub,
+    .app-aside-folded li:hover > .nav-sub,
+    .app-aside-folded li:focus > .nav-sub,
+    .app-aside-folded li:active > .nav-sub {
+        height: auto !important;
+        margin-left: 0;
+        overflow: visible!important;
+        opacity: 1;
+        display: block;
+    }
+
+    .app-aside-folded .active > .nav-sub > li:hover > .nav-sub,
+    .app-aside-folded .app-aside-folded ul>li:hover >ul > li:hover > .nav-sub,
+    .app-aside-folded .app-aside-folded ul>li:focus >ul > li:focus > .nav-sub,
+    .app-aside-folded .app-aside-folded ul>li:active >ul > li:active > .nav-sub {
+        height: auto !important;
+        margin-left: 0;
+        /*overflow: auto;*/
+        display: block;
+        opacity: 1;
+    }
+    .app-aside-folded .navi > ul > li > ul > li > ul{
+        position: absolute;
+        top: 0 !important;
+        display: none;
+        left: 100%;
+        z-index: 105;
+        width: 200px;
+        /*height: 0 !important;*/
+        -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .app-aside-folded .navi ul.nav li li:hover > ul {
+        display: block;
+    }
+}
+
+
+
+
+.draw-tool{
+    color: #000000!important;
+}
+.draw-tool > :first-child{
+    margin: 15px;
+}
+.draw-tool > li > div{
+    width: 250px;
+    margin: 5px;
+}
+.draw-tool > li > div > div{
+    margin: 10px;
+}
+.draw-tool > li >  div >a >span,
+.draw-tool > li >  div >a >span >a >span{
+    width: 25px;
+    height: 25px
+}
+
+.esri-basemap-gallery{
+    width: 260px;
+    color: #000000!important;
+}
+.esri-basemap-gallery > :first-child{
+    margin: 15px;
+}
+.esri-basemap-gallery > li{
+
+    max-height: 206px;overflow: auto;
+}
+.measurement_dijit .esriMeasurement .dijitButtonNode,
+.measurement_dijit .esriMeasurement .esriButtonHover .dijitButtonNode,
+.measurement_dijit .esriMeasurement .esriButtonChecked .dijitButtonNode{
+    height: 32px;
+}
+.measurement_dijit .esriMeasurementButtonContainer{
+    margin-left: 20px;
+}
+
+.locationForm{
+    margin: 10px;
+}
+.locationForm div{
+    margin: 5px 0 5px 5px;
+}
+.locationForm div input{
+    height: 32px;
+}
+.locationForm div a{
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.dijitMenuPopup{
+    z-index: 9001!important;
+}
+.dijitMenuPopup table.dijitMenuTable{
+    border-radius: 10px;
+    border-radius: 2px;
+    /*background: #90ccf5;*/
+
+}
+.dijitMenuPopup .esriMeasurementTableContainer{
+    padding: 5px;
+}
+.polyline_{
+    margin: 4px;
+    background-image: url(../img/mapappbiuder/polyline.png);
+    background-size: 25px;
+}
+.polygon_{
+    margin: 4px;
+    background-image: url(../img/mapappbiuder/polygon.png);
+    background-size: 25px;
+}
+.freehand_polygon_{
+    margin: 4px;
+    background-image: url(../img/mapappbiuder/freehand_polygon.png);
+    background-size: 25px;
+}
+.circle_{
+    margin: 4px;
+    background-image: url(../img/mapappbiuder/circle.png);
+    background-size: 25px;
+}
+.rectangle_{
+    margin: 4px;
+    background-image: url(../img/mapappbiuder/extent.png);
+    background-size: 25px;
+}
+.ellipse_{
+    margin: 4px;
+    background-image: url(../img/mapappbiuder/ellipse.png);
+    background-size: 25px;
+}
+.arrow_{
+    margin: 4px;
+    background-image: url(../img/mapappbiuder/up1.png);
+    background-repeat: no-repeat;
+    background-size: 20px;
+}
+.graghics_clear_{
+    margin: 4px;
+    background-image: url(../img/mapappbiuder/editor_delete.png);
+    background-size: 25px;
+}
+
+.polyline_:hover,
+.polygon_:hover,
+.freehand_polygon_:hover,
+.circle_:hover,
+.rectangle_:hover,
+.ellipse_:hover,
+.arrow_:hover,
+.graghics_clear_:hover{
+    opacity: 0.7;
+
+}
+.esriBasemapGallerySelectedNode .esriBasemapGalleryThumbnail {
+    border: 2px solid #F99;
+    margin: 1px!important;
+}
