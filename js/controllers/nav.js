@@ -119,4 +119,44 @@ angular.module("app")
         $scope.$on("resultPenalShowFromMain",function(event,msg){
             $scope.resultShow=msg;
         });
+
+        var dataList=[
+            {
+                imgUrl:'http://localhost:8000/img/dataItems/1.png',
+                title:"ABC站",
+                details:"其地理坐标为南纬69度 22分24秒、东经76度22分40秒",
+                viewNum:12542,
+                downNum:5234,
+                lastTime:"15.9.11",
+                selected:true
+            },
+            {
+                imgUrl:'//tiles-b.data-cdn.linz.govt.nz/services/tiles/v4/thumbnail/layer=804.20231,style=auto/150x100.png',
+                title:"中山站CTD",
+                details:"其地理坐标为南纬69度 22分24秒与北京的方位角度30分50秒",
+                viewNum:12542,
+                downNum:5234,
+                lastTime:"15.9.11",
+                selected:false
+            },
+            {
+                imgUrl:'//tiles-b.data-cdn.linz.govt.nz/services/tiles/v4/thumbnail/layer=804.20231,style=auto/150x100.png',
+                title:"中山站CTD",
+                details:"东经76度22分40秒，距离北京12553.160千方位角为32度30分50秒",
+                viewNum:12542,
+                downNum:5234,
+                lastTime:"15.9.11",
+                selected:false
+            }
+        ]
+        $scope.dataList=dataList;
+        $scope.addData=function(index){
+            console.log(index)
+            console.log($scope.dataList)
+            index.selected=true;
+        }
+        $scope.removeData=function(index){
+            index=false;
+        }
+
     }]);

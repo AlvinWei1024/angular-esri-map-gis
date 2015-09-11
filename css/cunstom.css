@@ -233,6 +233,9 @@ ul.nav > li > ul.nav > li > a.auto {
     display: table-cell;
     vertical-align: middle;
 }*/
+.lfloat{
+    float: left;
+}
 .clearfix{zoom:1}
 .clearfix:after{
      content:"";        
@@ -246,8 +249,8 @@ ul.nav > li > ul.nav > li > a.auto {
 }
 .result-content .result-view-content{
     border-top: solid 1px #ccc;
-    border-bottom: solid 1px #ccc;
-    margin:0px;
+    /*border-bottom: solid 1px #ccc;*/
+    margin:5px 0px;
     padding: 5px;
     border-radius: 2px;
 }
@@ -256,7 +259,7 @@ ul.nav > li > ul.nav > li > a.auto {
     float: left;
     width: 120px;
     height: 100px;
-    margin: 5px;
+    margin: 5px 0 5px 3px;
 }
 .result-view-Thumb .result-view-img{
     display: inline-block;
@@ -265,8 +268,8 @@ ul.nav > li > ul.nav > li > a.auto {
 }
 .result-view-title {
     float: left;
-    width: 210px;
-    margin-left: 5px;
+    width: 196px;
+    margin-left: 3px;
 
 }
 .result-view-title hr {
@@ -275,3 +278,33 @@ ul.nav > li > ul.nav > li > a.auto {
 .result-view-title .title {
     margin:5px;
 }
+.result-view-title .info .details {
+    height:44px;
+    display: table-cell;
+    vertical-align: middle;
+}
+.result-view-title .info .details a{
+    
+}
+.result-view-title .info .details span{
+    display: block;
+    /*white-space:nowrap; */
+    width:196px; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+}
+
+.controls{}
+.controls div a{
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+    color:#ccc; 
+}
+.controls .state-control .btn{
+    padding: 0;
+}
+.controls .state-control .btn i{
+    margin: 0;
+}
+.btn-addon.btn-sm i

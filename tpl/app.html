@@ -27,28 +27,41 @@
         <div class="cell">
           <div class="cell-inner padder">
             <div class='result-content'>
-              <div class="result-view-content clearfix">
+              <div ng-repeat="dataItem in dataList" class="result-view-content clearfix">
                 <div class="result-view-Thumb  tableCellContainer">
-                  <a class="result-view-img" href="" style="background-image: url({{'//tiles-b.data-cdn.linz.govt.nz/services/tiles/v4/thumbnail/layer=804.20231,style=auto/150x100.png'}})" alt=""></a>
+                  <a class="result-view-img" href="" style="background-image: url({{dataItem.imgUrl}})" alt=""></a>
                 </div>
                 <div class="result-view-title tableCellContainer">
                   <div class="info">
-                    <h4 class="title">
-                    asdasdadwa
+                    <h4 class="title" ng-bind="dataItem.title">
                     </h4>
-                    <div class="details"><span><a href="">123sdasd123sdasd123sdasd123sda sd123sdasd123sdasd</a></span></div>
+                    <div class="details"><a href=""><span ng-bind="dataItem.details"></span></a></div>
                   </div>
-                  
-                  <div class="controls">
-                    <div class="state-control">
-                      <button class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-plus"></i>添加</button>
-                      <button class="btn m-b-xs btn-sm btn-danger btn-addon hide"><i class="fa fa-minus" ></i>删除</button>
+                  <div class="controls clearfix">
+                    <div class="state-control lfloat" ng-init="add=true">
+                      <button class="btn m-b-xs btn-sm btn-info btn-addon" ng-hide="{{dataItem.selected}}" ng-click="addData(dataItem)"><i class="fa fa-plus"></i></button>
+                      <button class="btn m-b-xs btn-sm btn-danger btn-addon" ng-show="{{dataItem.selected}}" ng-click="removeData(dataItem.selected)"><i class="fa fa-minus" ></i></button>
                     </div>
-                    <div class="item-nenu"></div>
-                    <div class="context"></div>
-                    <div class="star"></div>
-                    <div class="down-num"></div>
-                    <div class="time"></div>
+                    <div class="item-nenu lfloat"></div>
+                    <div class="context lfloat">
+                      <a href="javascript:" title="浏览量">
+                        <i class="fa fa-signal"></i>
+                        <div ng-bind="dataItem.viewNum"></div>
+                      </a>
+                    </div>
+                    <div class="star lfloat"></div>
+                    <div class="down-num lfloat">
+                      <a href="javascript:" title="下载量">
+                        <i class="fa fa-cloud-download"></i>
+                        <div ng-bind="dataItem.downNum"></div>
+                      </a>
+                    </div>
+                    <div class="time lfloat">
+                      <a href="javascript:">
+                        <i class="glyphicon glyphicon-time"></i>
+                        <div ng-bind="dataItem.lastTime"></div>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
