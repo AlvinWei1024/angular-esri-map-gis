@@ -250,7 +250,7 @@ ul.nav > li > ul.nav > li > a.auto {
 .result-content .result-view-content{
     border-top: solid 1px #ccc;
     /*border-bottom: solid 1px #ccc;*/
-    margin:5px 0px;
+    /*margin:5px 0px;*/
     padding: 5px;
     border-radius: 2px;
 }
@@ -292,9 +292,16 @@ ul.nav > li > ul.nav > li > a.auto {
     width:196px; 
     overflow:hidden; 
     text-overflow:ellipsis;
+    line-height: 1.5em;
+    height: 3em;
+    display: -webkit-box;  
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; 
 }
 
-.controls{}
+.controls{
+    position: absolute;
+}
 .controls div a{
     display: inline-block;
     width: 50px;

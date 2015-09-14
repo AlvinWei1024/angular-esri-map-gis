@@ -39,8 +39,7 @@
                   </div>
                   <div class="controls clearfix">
                     <div class="state-control lfloat" ng-init="add=true">
-                      <button class="btn m-b-xs btn-sm btn-info btn-addon" ng-hide="{{dataItem.selected}}" ng-click="addData(dataItem)"><i class="fa fa-plus"></i></button>
-                      <button class="btn m-b-xs btn-sm btn-danger btn-addon" ng-show="{{dataItem.selected}}" ng-click="removeData(dataItem.selected)"><i class="fa fa-minus" ></i></button>
+                      <button class="btn m-b-xs btn-sm btn-addon" ng-class="{'btn-info':!dataItem.selected, 'btn-danger':dataItem.selected}"  ng-click="addData(dataItem)" title="{{dataItem.selected?'移除':'添加'}}"><i class="fa" ng-class="{'fa-plus':!dataItem.selected, 'fa-minus':dataItem.selected}"></i></button>
                     </div>
                     <div class="item-nenu lfloat"></div>
                     <div class="context lfloat">
@@ -57,7 +56,7 @@
                       </a>
                     </div>
                     <div class="time lfloat">
-                      <a href="javascript:">
+                      <a href="javascript:" title="最后更新时间">
                         <i class="glyphicon glyphicon-time"></i>
                         <div ng-bind="dataItem.lastTime"></div>
                       </a>
@@ -65,9 +64,7 @@
                   </div>
                 </div>
               </div>
-              
             </div>
-          
           </div>
         </div>
       </div>
