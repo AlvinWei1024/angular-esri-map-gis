@@ -7,6 +7,7 @@ angular.module('esri',[]).service('esri_map',function($timeout,$q){
     this.map;
     this.mapDerfer= $q.defer();
     this.addLayerDerfer= $q.defer();
+    this.wkid='Mercator';//South,North
 
     //var mapDeferred = $q.defer();
     var navToolbar;
@@ -75,6 +76,7 @@ angular.module('esri',[]).service('esri_map',function($timeout,$q){
                   title: option.title
                 };
                 if(currentProjection===option.projection){
+
                     self.map.setBasemap("base_map");
                 }
                 else{
@@ -87,6 +89,7 @@ angular.module('esri',[]).service('esri_map',function($timeout,$q){
                     self.mapDerfer.resolve(self.map);
                     resetMap(self.map)
                     currentProjection=option.projection;
+                    self.wkid=currentProjection;
                 }
             }
             else{
@@ -244,7 +247,7 @@ angular.module('esri',[]).service('esri_map',function($timeout,$q){
             }
         );
         require(["esri/geometry/Point","esri/symbols/PictureMarkerSymbol",
-            "esri/Color", "esri/InfoTemplate", "esri/graphic"],function(Point,PictureMarkerSymbol,Color,InfoTemplate,Graphic){
+            "esri/Color", "esri/InfoTemplate", "esri/graphic","esri/SpatialReference"],function(Point,PictureMarkerSymbol,Color,InfoTemplate,Graphic,SpatialReference){
 
             var graphic = '';
             self.centerAt=function(lot,lat){
@@ -252,7 +255,8 @@ angular.module('esri',[]).service('esri_map',function($timeout,$q){
                     map.graphics.remove(graphic);
                 }
 
-                var mapPoint =  new Point([lot,lat]);
+                // var mapPoint =  new Point([lot,lat]);
+                 var mapPoint =  new Point([lot,lat],new SpatialReference({wkid:5936}));
                 var pictureMarkerSymbol = new PictureMarkerSymbol('img/mksymbol.png',29,42);
 
                 map.centerAt(mapPoint);
