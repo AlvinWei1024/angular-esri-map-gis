@@ -1,0 +1,95 @@
+<div ng-controller="legendCtl">
+	<div class="legend-title clearfix">
+		<span>图层</span>
+		<a class="btn btn-sm explored" ng-click="explored=!explored;">
+			<span>{{explored?"收起":"展开"}}</span><i class="fa" ng-class="{'fa-chevron-down':!explored, 'fa-chevron-up':explored}"></i>
+		</a>
+	</div>
+	<hr/>
+	<div class="legend-item-content" ng-show="explored">
+		<ul ui-jq="sortable" class="list-group gutter list-group-sm list-group-sp legend-item">
+		    
+		    <li class="list-group-item" draggable="true">
+		      <span class="pull-right">
+		        <a href=""><i class="fa fa-times fa-fw"></i></a>                  
+		      </span>
+		      <div class="clear">
+		        layer1
+		      </div>
+		    </li>
+		    <li class="list-group-item" draggable="true">
+		      <span class="pull-right">
+		        <a href=""><i class="fa fa-fw fa-times"></i></a>
+		      </span>
+		      <div class="clear">
+		        layer1
+		      </div>
+		    </li>
+		    <li class="list-group-item" draggable="true">
+		      <span class="pull-right">
+		        <a href=""><i class="fa fa-fw fa-times"></i></a>
+		      </span>
+		      <div class="clear">
+		        layer1
+		      </div>
+		    </li>
+		    <li class="list-group-item" draggable="true">
+		      <span class="pull-right">
+		        <a href=""><i class="fa fa-fw fa-times"></i></a>
+		      </span>
+		      <div class="clear">
+		        layer1
+		      </div>
+		    </li>
+		    <li class="list-group-item" draggable="true">
+		      <span class="pull-right">
+		        <a href=""><i class="fa fa-fw fa-times"></i></a>
+		      </span>
+		      <div class="clear">
+		        layer1
+		      </div>
+		    </li>
+		    <li class="list-group-item" draggable="true">
+		      <span class="pull-right">
+		        <a href=""><i class="fa fa-fw fa-times"></i></a>
+		      </span>
+		      <div class="clear">
+		        layer1
+		      </div>
+		    </li>
+		    <li class="list-group-item" draggable="true">
+		      <span class="pull-right">
+		        <a href=""><i class="fa fa-fw fa-times"></i></a>
+		      </span>
+		      <div class="clear">
+		        layer1
+		      </div>
+		    </li>
+		    <li class="list-group-item" draggable="true">
+		      <span class="pull-right">
+		        <a href=""><i class="fa fa-fw fa-times"></i></a>
+		      </span>
+		      <div class="clear">
+		        layer1
+		      </div>
+		    </li>
+		    <li class="list-group-item" draggable="true">
+		      <span class="pull-right">
+		        <a href=""><i class="fa fa-fw fa-times"></i></a>
+		      </span>
+		      <div class="clear">
+		        layer1
+		      </div>
+		    </li>
+		    <li class="list-group-item" draggable="true">
+		      <span class="pull-right">
+		        <a href=""><i class="fa fa-fw fa-times"></i></a>
+		      </span>
+		      <div class="clear">
+		        layer1
+		      </div>
+		    </li>
+		  </ul>
+	</div>
+	
+</div>

@@ -35,6 +35,7 @@ angular.module('app')
                                   'js/directives/esri-basemap-gallery.js'
                                   ,'js/controllers/map-controller.js'
                                   ,'js/controllers/map.option.controller.js'
+                                  ,'js/controllers/legend.js'
                                   ,'js/directives/measurement.js'
                                   ,'js/directives/draw.tool.js'
                                   ,'js/directives/centerat.js'

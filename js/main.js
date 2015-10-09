@@ -34,11 +34,23 @@ angular.module('app')
           asideFixed: false,
           asideFolded: false,
           asideDock: false,
-          container: false
+          container: false,
+          resultPanel:false
         }
       };
       $scope.$on("resultPenalShowFromNav",function(event,msg){
           $scope.$broadcast("resultPenalShowFromMain", msg);
+      });
+      $scope.$on("resultPenalStateChanged",function(event,msg){
+        if(msg){
+          $scope.app.settings.resultPanel=true;
+        }
+        else{
+          $scope.app.settings.resultPanel=false;
+        }
+      });
+     $scope.$on("resultChangeMapMessageFromBaseMapGallery",function(event,msg){
+          $scope.$broadcast("resultChangeMapMessageFromMain", msg);
       });
 
 

@@ -97,8 +97,33 @@ ul.nav > li > ul.nav > li > a.auto {
     .app-aside-folded .navi ul.nav li li:hover > ul {
         display: block;
     }
+    .app-aside-folded .second-tree {
+        position: absolute;
+        top: 50px;
+        right: 0;
+        bottom: 0;
+        z-index: 1000;
+    }
+    .app-aside-folded .app-result-show .app-aside,
+    .app-aside-folded .navbar-header {
+        width: 60px;
+    }
+    .app-aside-folded .app-result-show .legend-content{
+        right: 360px;
+    }
 }
-
+.app-result-show .app-aside{
+        width: 200px;
+    }
+.second-tree{
+    float: left;
+    margin-left: 200px;
+    position: absolute;
+    top: 50px;
+    /*right: 0;*/
+    bottom: 0;
+    z-index: 1000;
+}
 
 
 
@@ -314,4 +339,51 @@ ul.nav > li > ul.nav > li > a.auto {
 .controls .state-control .btn i{
     margin: 0;
 }
-.btn-addon.btn-sm i
+.btn-addon.btn-sm i{}
+.result-content .data-details-table{
+    /*width: 196px;*/
+    margin: 120px 0px 5px;
+    clear: both;
+    /*border-top: solid 1px #ccc;*/
+    /*border-bottom: solid 1px #ccc;*/
+    *zoom:1;
+    /*display: none;*/
+}
+.legend-content{
+    position: absolute;
+    z-index: 1002;
+    width: 200px;
+    max-height: calc(100% - 50px);
+    right: 0;
+    left: auto;
+    padding: 5px;
+    top:50px;
+    border: solid 1px #eee;
+    background-color: rgb(237, 241, 242);
+    
+    border-radius:1px;
+    box-shadow: 0 0 1px #eee;
+}
+.legend-content hr{
+    margin:5px 0 2px;
+    border-top: solid 1px #ccc;
+}
+.legend-content .legend-title .explored{
+    float: right;
+    padding: 0;
+}
+.legend-content .legend-item-content{
+    width: 100%;
+    margin-top:5px;
+    overflow: scroll;
+    max-height: 300px;
+    overflow: auto;
+}
+
+
+
+
+.settings {
+  z-index: 1001;
+}
+
