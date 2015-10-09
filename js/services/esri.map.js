@@ -247,30 +247,41 @@ angular.module('esri',[]).service('esri_map',function($timeout,$q){
             }
         );
         require(["esri/geometry/Point","esri/symbols/PictureMarkerSymbol",
-            "esri/Color", "esri/InfoTemplate", "esri/graphic","esri/SpatialReference"],function(Point,PictureMarkerSymbol,Color,InfoTemplate,Graphic,SpatialReference){
+            "esri/Color", "esri/InfoTemplate", "esri/graphic","esri/SpatialReference", "esri/tasks/GeometryService", "esri/tasks/ProjectParameters"],function(Point,PictureMarkerSymbol,Color,InfoTemplate,Graphic,SpatialReference,GeometryService,ProjectParameters){
 
             var graphic = '';
-            self.centerAt=function(lot,lat){
+           self.centerAt=function(lot,lat,wkid){
                 if(graphic != ''){
                     map.graphics.remove(graphic);
                 }
-
-                // var mapPoint =  new Point([lot,lat]);
-                 var mapPoint =  new Point([lot,lat],new SpatialReference({wkid:5936}));
+                    var point =  new Point(lot,lat,new SpatialReference({wkid:4326}));
+                    //此处进行经纬->投影坐标转换 利用geometry service
+                    var gsvc = new GeometryService('http://10.200.21.35:6080/arcgis/rest/services/Utilities/Geometry/GeometryServer');//geometry service 地址
+                    var params = new ProjectParameters();
+                    params.geometries = [point];
+                    params.outSR = new SpatialReference({wkid:wkid});
+                    params.transformation = '';
+                    params.format = 'JSON';
+                    gsvc.project(params);
+                    gsvc.on("project-complete", function(result){
+                         mapPoint = result.geometries[0];
+                        //定位
+                        map.centerAt(mapPoint);
+                        graphic = new Graphic(mapPoint,pictureMarkerSymbol);
+                        map.graphics.add(graphic);
+                });
                 var pictureMarkerSymbol = new PictureMarkerSymbol('img/mksymbol.png',29,42);
-
-                map.centerAt(mapPoint);
-                graphic = new Graphic(mapPoint,pictureMarkerSymbol)
-                map.graphics.add(graphic);
-
-
             }
             self.centerAtRm=function(){
                 if(graphic != ''){
                     map.graphics.remove(graphic);
                 }
             }
-        })
+        });
+        self.getWkid=function(){
+                       // console.log(map.spatialReference.wkid);
+                          return map.spatialReference.wkid;
+                    };
         require(["esri/layers/ArcGISTiledMapServiceLayer","esri/layers/ArcGISDynamicMapServiceLayer","esri/layers/ArcGISImageServiceLayer","esri/layers/FeatureLayer"],
         function(ArcGISTiledMapServiceLayer,ArcGISDynamicMapServiceLayer,ArcGISImageServiceLayer,FeatureLayer){
             self.addLayer=function(url,type,option){

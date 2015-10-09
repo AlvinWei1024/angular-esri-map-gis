@@ -26,6 +26,7 @@ app.directive('basemapGallery',["$http",'esri_map',function($http,esriMap){
                     var selected=basemap_object[index];
                     console.log(selected)
                     esriMap.changeMap(selected);
+                    scope.$emit("resultChangeMapMessageFromBaseMapGallery", true);//向父级发消息改变底图
                 }
                 esriMap.changeMap(basemaps[0])
             });

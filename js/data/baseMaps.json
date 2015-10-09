@@ -13,7 +13,7 @@
     "projection":"South",
     "zoom":3,
     "thumbnailUrl":"http://resources.smartjs.info/images/polar/basemap-gallery/south.png",
-    "layers":["http://10.200.21.35:6080/arcgis/rest/services/%E5%8D%97%E6%9E%81%E5%85%A8%E5%9B%BEtiles/MapServer"]
+    "layers":["http://202.121.66.51:6688/arcgis/rest/services/%E5%8D%97%E6%9E%81%E5%85%A8%E5%9B%BEtiles2/MapServer"]
   },
   {
     "index":12,

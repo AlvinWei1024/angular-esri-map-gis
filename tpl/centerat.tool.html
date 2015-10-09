@@ -20,7 +20,7 @@
                 <a ng-click="submitClick()" ng-disabled="btnDisable"  class="btn  btn-default" type="submit" > 定位 <i class="icon icon-pointer"></i></a>
 
             </div>
-            <div ng-show="latError" class="text-danger">* &nbsp;&nbsp;&nbsp;请输入正确的纬度!</div>
+            <div ng-show="latError" class="text-danger">* &nbsp;&nbsp;&nbsp;请输入正确的纬度!{{errorMessage}}</div>
         </div>
     </ul>
 </li>
