@@ -11,7 +11,7 @@ polar-system
 ***
 
 ### 系统预览
-![图片](http://)
+![图片](http://images.cnblogs.com/cnblogs_com/alvinwei1024/713388/o_polar-web.png)
 ***
 ### 在线Demo
 [还未完善](http://smartjs.info)
