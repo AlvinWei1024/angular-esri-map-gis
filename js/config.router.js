@@ -39,6 +39,7 @@ angular.module('app')
                                   ,'js/directives/measurement.js'
                                   ,'js/directives/draw.tool.js'
                                   ,'js/directives/centerat.js'
+                                  ,'js/controllers/dataResultItem-controller.js'
                                   ]).then(
                                   function(){
                                       //return $ocLazyLoad.load('js/app/map/load-map-controller.js');

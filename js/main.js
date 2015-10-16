@@ -35,7 +35,8 @@ angular.module('app')
           asideFolded: false,
           asideDock: false,
           container: false,
-          resultPanel:false
+          resultPanel:false,
+          resultItemPanel:false
         }
       };
       $scope.$on("resultPenalShowFromNav",function(event,msg){
@@ -43,10 +44,10 @@ angular.module('app')
       });
       $scope.$on("resultPenalStateChanged",function(event,msg){
         if(msg){
-          $scope.app.settings.resultPanel=true;
+          $scope.app.settings.resultPanel=true;//设置当前状态为数据结果面板：true
         }
         else{
-          $scope.app.settings.resultPanel=false;
+          $scope.app.settings.resultPanel=false;////false
         }
       });
      $scope.$on("resultChangeMapMessageFromBaseMapGallery",function(event,msg){
@@ -54,6 +55,23 @@ angular.module('app')
       });
 
 
+     $scope.$on("dataResult-to-main-showState",function(event,res){
+
+      if(!res){
+        return;
+      }
+      console.log($scope.app.settings.resultItemPanel)
+      if(res.showState){
+        
+        $scope.app.settings.resultItemPanel=true;////设置当前状态为数据结果面板：true
+      }
+      else{
+        $scope.app.settings.resultItemPanel=false;////false
+      }
+      console.log("send",res);
+      $scope.$broadcast("main-to-resultItem-showState", res);
+
+     })
 
 
 

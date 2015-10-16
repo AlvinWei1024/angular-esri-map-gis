@@ -1,9 +1,9 @@
 <!-- list -->
-<ul class="nav" ng-controller="navCtrl">
+<ul id="menuItems" class="nav" ng-controller="navCtrl">
     <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
         <span>专项专题</span>
     </li>
-    <li class="" ng-repeat="rootNavData in navData" ui-sref-active="{{rootNavData.selected?active:null}}">
+    <li ng-repeat="rootNavData in navData" ui-sref-active="{{rootNavData.selected?active:null}}">
         <a class="auto">
             <span class="pull-right text-muted">
                 <i class="fa fa-fw fa-angle-right text"></i>
@@ -34,10 +34,10 @@
                         </a>
                     </li>
                     <li ng-repeat="subNavData in navData.child" ui-sref-active="{{subNavData.selected?active:' '}}">
-                        <a ng-click="subNavData.selected=!subNavData.selected">
-                            <label class="i-checks m-b-none"><input type="checkbox" name=" " ng-model="subNavData.selected"><i></i></label>
-                            <span>{{subNavData.name}}</span>
+                        <a class="click-node">
+                            <span class="click-node">{{subNavData.name}}</span>
                         </a>
+                        <li class="line dk"></li>
                     </li>
                 </ul>
             </li>

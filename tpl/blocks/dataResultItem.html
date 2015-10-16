@@ -1,0 +1,58 @@
+<div class="height-100 pos-fix no-padder  w-xxl w-auto-xs bg-white b-l ">
+	<div class="vbox">
+    <div class="wrapper b-b b-t b-light m-b clearfix">
+      <a ng-href class="pull-left text-muted text-md" ui-toggle-class="hide" target=".app-aside-right" ng-click="resultItemShowStateChange()"><i class="fa fa-chevron-left"></i>返回</a>
+      <span class="pull-right">{{"\{数据结果\}"}}</span>
+    </div>
+    <div class="row-row">
+      <div class="cell">
+        <div class="cell-inner padder">
+          <div class='result-content'>
+          
+            <!-- <div ng-repeat="dataItem in dataList" class="result-view-content clearfix">
+              <div class="result-view-Thumb  tableCellContainer">
+                <a class="result-view-img" href="" style="background-image: url({{dataItem.imgUrl}})" alt=""></a>
+              </div>
+              <div class="result-view-title tableCellContainer">
+                <div class="info">
+                  <h4 class="title" ng-bind="dataItem.title">
+                  </h4>
+                  <div class="details"><a href="" ng-click="add=!add"><span ng-bind="dataItem.details"></span></a></div>
+                </div>
+                <div class="controls clearfix">
+                  <div class="state-control lfloat" ng-init="add=false">
+                    <button class="btn m-b-xs btn-sm btn-addon" ng-class="{'btn-info':!dataItem.selected, 'btn-danger':dataItem.selected}"  ng-click="addData(dataItem)" title="{{dataItem.selected?'移除':'添加'}}"><i class="fa" ng-class="{'fa-plus':!dataItem.selected, 'fa-minus':dataItem.selected}"></i></button>
+                  </div>
+                  <div class="item-nenu lfloat"></div>
+                  <div class="context lfloat">
+                    <a href="javascript:" title="浏览量">
+                      <i class="fa fa-signal"></i>
+                      <div ng-bind="dataItem.viewNum"></div>
+                    </a>
+                  </div>
+                  <div class="star lfloat"></div>
+                  <div class="down-num lfloat">
+                    <a href="javascript:" title="下载量">
+                      <i class="fa fa-cloud-download"></i>
+                      <div ng-bind="dataItem.downNum"></div>
+                    </a>
+                  </div>
+                  <div class="time lfloat">
+                    <a href="javascript:" title="最后更新时间">
+                      <i class="glyphicon glyphicon-time"></i>
+                      <div ng-bind="dataItem.lastTime"></div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="data-details-table" ng-show="add">
+                <p ng-bind="dataItem.details"></p>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

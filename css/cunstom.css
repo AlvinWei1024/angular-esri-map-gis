@@ -1,3 +1,13 @@
+body{
+    /*overflow: hidden;*/
+}
+.app-aside {
+    overflow-y: visible;
+}
+.app-header-fixed {
+    /*margin-top: 50px;*/
+    padding-top: 0;
+}
 .map-control{
     position: relative;
 }
@@ -43,12 +53,15 @@ ul.nav > li > ul.nav > li > a.auto {
     .app-content,
     .app-footer {
     margin-left: 325px;
+    
     }
 }
 .input-group{
     width: 200px;
 }
-
+.app-content{
+    width: calc(100% - 325px);
+}
 
 @media (min-width: 768px) {
     .app-aside-folded .navi > ul > li > ul {
@@ -97,36 +110,108 @@ ul.nav > li > ul.nav > li > a.auto {
     .app-aside-folded .navi ul.nav li li:hover > ul {
         display: block;
     }
-    .app-aside-folded .second-tree {
+/*
+折叠时，地图元素宽度变化
+*/
+    
+
+    /*.app-aside-folded .second-tree {
         position: absolute;
-        top: 50px;
         right: 0;
         bottom: 0;
         z-index: 1000;
-    }
+    }*/
+
+
+
     .app-aside-folded .app-result-show .app-aside,
     .app-aside-folded .navbar-header {
         width: 60px;
     }
-    .app-aside-folded .app-result-show .legend-content{
-        right: 360px;
+    
+    /*   地图部分 */
+    .app-aside-folded .app-content{
+        width: calc(100% - 60px);
     }
+    .app-result-show .app-content{
+        width: calc(100% - 420px);
+        margin-left: 420px;
+    }
+    .app-result-show .app-content{
+        width: calc(100% - 420px);
+        margin-left: 420px;
+    }
+    .app-result-show .app-resultItem-show .app-content{
+        width: calc(100% - 480px);
+        margin-left: 480px;
+    }
+
+
+    .app-resultItem-show .dataResultItem{
+
+    }
+    .dataResultItem{
+        float: left;
+        padding-left: 120px;
+        position: absolute;
+        top: 50px;
+        /*height: calc(100% - 50px);*/
+        
+        bottom: 0;
+        z-index: 1001;
+    }
+
+
+    .dataResultItem_fullExtent{
+        float: left;
+        width: 100%;
+        padding-left: 105px;
+        position: absolute;
+        top: 50px;
+        /*right: 0;*/
+        bottom: 0;
+        z-index: 1050;
+    }
+
+
 }
+
+
+
 .app-result-show .app-aside{
         width: 200px;
-    }
+}
+.app-result-show .dataResultMask{
+        display: block;
+}
+
 .second-tree{
     float: left;
-    margin-left: 200px;
     position: absolute;
-    top: 50px;
-    /*right: 0;*/
     bottom: 0;
     z-index: 1000;
 }
+.second-tree-content{
+    width: 360px;
+    margin-left: 60px;
+
+}
 
 
 
+
+
+
+
+.height-100{
+    height: 100%;
+
+}
+.height-100-50{
+    height: calc(100% - 50px);
+    top: 50px;
+    position: absolute;
+}
 .draw-tool{
     color: #000000!important;
 }
@@ -266,7 +351,8 @@ ul.nav > li > ul.nav > li > a.auto {
      content:"";        
      display:block;        
      height:0;        
-     clear:both;        
+     clear:both; 
+     overflow: hidden;       
      visibility:hidden;        
 }
 .result-content{
@@ -353,7 +439,7 @@ ul.nav > li > ul.nav > li > a.auto {
     position: absolute;
     z-index: 1002;
     width: 200px;
-    max-height: calc(100% - 50px);
+    max-height: 100%;
     right: 0;
     left: auto;
     padding: 5px;
@@ -379,6 +465,10 @@ ul.nav > li > ul.nav > li > a.auto {
     max-height: 300px;
     overflow: auto;
 }
+
+
+
+
 
 
 
