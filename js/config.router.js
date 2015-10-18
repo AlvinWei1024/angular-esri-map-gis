@@ -40,6 +40,7 @@ angular.module('app')
                                   ,'js/directives/draw.tool.js'
                                   ,'js/directives/centerat.js'
                                   ,'js/controllers/dataResultItem-controller.js'
+                                  ,'js/controllers/dataResult.js'
                                   ]).then(
                                   function(){
                                       //return $ocLazyLoad.load('js/app/map/load-map-controller.js');

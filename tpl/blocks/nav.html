@@ -14,30 +14,29 @@
         </a>
         <ul class="nav nav-sub dk">
             <li class="nav-sub-header">
-                <a href>
+                <a href ng-click="rootNavData.submenu?emitData(rootNavData):doNothing()">
                     <span>{{rootNavData.name}}</span>
                 </a>
             </li>
-            <li ng-repeat="navData in rootNavData.child" ui-sref-active="{{navData.selected?active:' '}}">
+            <li ng-repeat="navData1 in rootNavData.submenu" ui-sref-active="{{navData1.selected?active:' '}}">
                 <a class="auto">
                     <span class="pull-right text-muted">
                         <i class="fa fa-fw fa-angle-right text"></i>
                         <i class="fa fa-fw fa-angle-down text-active"></i>
                     </span>
-                    <i class="glyphicon {{navData.icon}} icon text-primary-dker"></i>
-                    <span class="font-bold1" >{{navData.name}}</span>
+                    <i class="glyphicon {{navData1.icon}} icon text-primary-dker"></i>
+                    <span class="font-bold1" >{{navData1.name}}</span>
                 </a>
                 <ul class="nav nav-sub lt">
                     <li class="nav-sub-header">
-                        <a href>
-                            <span>{{navData.name}}</span>
+                        <a href ng-click="navData1.submenu?emitData(navData1):doNothing()">
+                            <span>{{navData1.name}}</span>
                         </a>
                     </li>
-                    <li ng-repeat="subNavData in navData.child" ui-sref-active="{{subNavData.selected?active:' '}}">
-                        <a class="click-node">
+                    <li ng-repeat="subNavData in navData1.submenu" ui-sref-active="{{subNavData.selected?active:' '}}">
+                        <a class="click-node" ng-click="subNavData.submenu?emitData(subNavData):doNothing()">
                             <span class="click-node">{{subNavData.name}}</span>
                         </a>
-                        <li class="line dk"></li>
                     </li>
                 </ul>
             </li>

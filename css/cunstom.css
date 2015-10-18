@@ -1,5 +1,5 @@
 body{
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
 .app-aside {
     overflow-y: visible;
@@ -180,9 +180,6 @@ ul.nav > li > ul.nav > li > a.auto {
 
 .app-result-show .app-aside{
         width: 200px;
-}
-.app-result-show .dataResultMask{
-        display: block;
 }
 
 .second-tree{
@@ -400,6 +397,7 @@ ul.nav > li > ul.nav > li > a.auto {
 .result-view-title .info .details span{
     display: block;
     /*white-space:nowrap; */
+    word-wrap: break-word;
     width:196px; 
     overflow:hidden; 
     text-overflow:ellipsis;
@@ -430,6 +428,7 @@ ul.nav > li > ul.nav > li > a.auto {
     /*width: 196px;*/
     margin: 120px 0px 5px;
     clear: both;
+    word-wrap: break-word;
     /*border-top: solid 1px #ccc;*/
     /*border-bottom: solid 1px #ccc;*/
     *zoom:1;

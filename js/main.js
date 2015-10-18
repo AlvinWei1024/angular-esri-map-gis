@@ -39,10 +39,11 @@ angular.module('app')
           resultItemPanel:false
         }
       };
-      $scope.$on("resultPenalShowFromNav",function(event,msg){
-          $scope.$broadcast("resultPenalShowFromMain", msg);
+      $scope.$on("nav-to-main-showState",function(event,msg){
+          $scope.$broadcast("main-to-result-showState", msg);
       });
-      $scope.$on("resultPenalStateChanged",function(event,msg){
+      
+      $scope.$on("result-to-main-stateChanged",function(event,msg){
         if(msg){
           $scope.app.settings.resultPanel=true;//设置当前状态为数据结果面板：true
         }
@@ -50,28 +51,27 @@ angular.module('app')
           $scope.app.settings.resultPanel=false;////false
         }
       });
+
+
      $scope.$on("resultChangeMapMessageFromBaseMapGallery",function(event,msg){
-          $scope.$broadcast("resultChangeMapMessageFromMain", msg);
+        $scope.$broadcast("resultChangeMapMessageFromMain", msg);
       });
 
 
-     $scope.$on("dataResult-to-main-showState",function(event,res){
+     $scope.$on("resultItem-to-main-showState",function(event,res){
 
-      if(!res){
-        return;
-      }
-      console.log($scope.app.settings.resultItemPanel)
-      if(res.showState){
-        
-        $scope.app.settings.resultItemPanel=true;////设置当前状态为数据结果面板：true
-      }
-      else{
-        $scope.app.settings.resultItemPanel=false;////false
-      }
-      console.log("send",res);
-      $scope.$broadcast("main-to-resultItem-showState", res);
-
-     })
+        if(!res){
+          return;
+        }
+        if(res.showState){
+          
+          $scope.app.settings.resultItemPanel=true;////设置当前状态为数据结果面板：true
+        }
+        else{
+          $scope.app.settings.resultItemPanel=false;////false
+        }
+        $scope.$broadcast("main-to-resultItem-showState", res);
+      })
 
 
 
