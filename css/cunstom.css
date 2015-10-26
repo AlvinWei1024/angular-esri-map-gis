@@ -1,6 +1,12 @@
 body{
     overflow: hidden;
 }
+.text-center{
+    text-align: center;
+}
+.width-100{
+    width: 100%;
+}
 .app-aside {
     overflow-y: visible;
 }
@@ -150,6 +156,9 @@ ul.nav > li > ul.nav > li > a.auto {
     .app-resultItem-show .dataResultItem{
 
     }
+    .dataResultItem .dataResultItemExpand{
+        width:calc(100% - 130px);
+    }
     .dataResultItem{
         float: left;
         padding-left: 120px;
@@ -158,9 +167,11 @@ ul.nav > li > ul.nav > li > a.auto {
         /*height: calc(100% - 50px);*/
         
         bottom: 0;
-        z-index: 1001;
+        z-index: 1003;
     }
-
+    .dataResultItem .title{
+        font-size: 16px;
+    }
 
     .dataResultItem_fullExtent{
         float: left;
@@ -471,6 +482,10 @@ ul.nav > li > ul.nav > li > a.auto {
 
 
 
+.tb-cel-midlle{
+    display: table-cell;
+    text-align: center;
+}
 
 .settings {
   z-index: 1001;

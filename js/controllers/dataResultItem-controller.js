@@ -3,6 +3,7 @@ app.controller('dataResultItemCtrl',['$scope',"$http",function ($scope,$http) {
     $scope.dataInfo={};
 	$scope.resultItemShowState="hide";
 	$scope.resultItemShow=false;
+    $scope.expand=false;
 
     $scope.resultItemShowStateChange=function(){
         $scope.resultItemShow=!$scope.resultItemShow;

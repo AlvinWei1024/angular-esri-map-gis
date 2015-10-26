@@ -1,8 +1,10 @@
-<div class="height-100 pos-fix no-padder  w-xxl w-auto-xs bg-white b-l ">
+<div class="height-100 pos-fix no-padder w-auto-xs bg-white b-l" ng-class="{'w-xxl':!expand, 'dataResultItemExpand':expand}">
 	<div class="vbox">
-    <div class="wrapper b-b b-t b-light m-b clearfix">
+    <div class="wrapper b-b b-t b-light m-b text-center clearfix">
       <a ng-href class="pull-left text-muted text-md" ui-toggle-class="hide" target=".app-aside-right" ng-click="resultItemShowStateChange()"><i class="fa fa-chevron-left"></i>返回</a>
-      <span class="pull-right">{{title}}</span>
+      <span class="title">{{title}}</span>
+      <a ng-href class="pull-right text-muted text-md" ng-click="expand=!expand"><i class="fa" ng-class="{'fa-expand':!expand, 
+      'fa-compress':expand}"></i></a>
     </div>
     <div class="row-row">
       <div class="cell">
@@ -11,6 +13,7 @@
             <div ng-repeat="data in dataItem">
               <span>{{data.title}}</span>
             </div>
+
               {{dataItem}}
               {{dataInfo}}
             <!-- <div ng-repeat="dataItem in dataList" class="result-view-content clearfix">
