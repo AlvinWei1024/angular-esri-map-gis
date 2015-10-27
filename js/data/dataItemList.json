@@ -5,7 +5,7 @@
 		"image-url":"http://localhost:8000/img/dataItems/1.png",
 		"date":"2007-11-1",
 		"name":"pomoam",
-		"观测仪器":"ADCP",
+		"monitor":"ADCP",
 		"dataSetId":123,
 		"download-url":""
 	},
@@ -15,7 +15,7 @@
 		"image-url":"http://localhost:8000/img/dataItems/1.png",
 		"date":"2007-11-1",
 		"name":"pomoam",
-		"观测仪器":"ADCP",
+		"monitor":"ADCP",
 		"dataSetId":123,
 		"download-url":""
 	},
@@ -25,7 +25,7 @@
 		"image-url":"http://localhost:8000/img/dataItems/1.png",
 		"date":"2007-11-1",
 		"name":"pomoam",
-		"观测仪器":"ADCP",
+		"monitor":"ADCP",
 		"dataSetId":123,
 		"download-url":""
 	},
@@ -35,7 +35,7 @@
 		"image-url":"http://localhost:8000/img/dataItems/1.png",
 		"date":"2007-11-1",
 		"name":"pomoam",
-		"观测仪器":"ADCP",
+		"monitor":"ADCP",
 		"dataSetId":123,
 		"download-url":""
 	},
@@ -45,7 +45,7 @@
 		"image-url":"http://localhost:8000/img/dataItems/1.png",
 		"date":"2007-11-1",
 		"name":"pomoam",
-		"观测仪器":"ADCP",
+		"monitor":"ADCP",
 		"dataSetId":123,
 		"download-url":""
 	}

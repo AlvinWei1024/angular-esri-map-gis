@@ -43,7 +43,7 @@ angular.module('app')
                                   ,'js/controllers/dataResult.js'
                                   ]).then(
                                   function(){
-                                      //return $ocLazyLoad.load('js/app/map/load-map-controller.js');
+                                      return $ocLazyLoad.load('ngGrid');
                                   }
                               );
                           }]

@@ -71,7 +71,18 @@ angular.module('app')
           $scope.app.settings.resultItemPanel=false;////false
         }
         $scope.$broadcast("main-to-resultItem-showState", res);
-      })
+      });
+
+    //legend
+      $scope.$on("resultAddInLegendFromDataResult",function(event,data){
+            $scope.$broadcast("resultAddInLegendFromMain", data);
+        });
+       $scope.$on("resultDelInLegendFromDataResult",function(event,data){
+            $scope.$broadcast("resultDelInLegendFromMain", data);
+        });
+        $scope.$on("resultDelInDataResultFromLegend",function(event,data){
+            $scope.$broadcast("resultDelInDataResultFromMain", data);
+        });
 
 
 

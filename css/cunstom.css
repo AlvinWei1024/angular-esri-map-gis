@@ -448,7 +448,7 @@ ul.nav > li > ul.nav > li > a.auto {
 .legend-content{
     position: absolute;
     z-index: 1002;
-    width: 200px;
+    width: 250px;
     max-height: 100%;
     right: 0;
     left: auto;
