@@ -41,6 +41,7 @@ angular.module('app')
                                   ,'js/directives/centerat.js'
                                   ,'js/controllers/dataResultItem-controller.js'
                                   ,'js/controllers/dataResult.js'
+                                  ,'js/directives/image-gallery.js'
                                   ]).then(
                                   function(){
                                       return $ocLazyLoad.load('ngGrid');

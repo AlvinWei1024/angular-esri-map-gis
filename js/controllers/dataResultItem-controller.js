@@ -72,8 +72,8 @@ app.controller('dataResultItemCtrl',['$scope',"$http",function ($scope,$http) {
     }; 
     $scope.totalServerItems = 0;
     $scope.pagingOptions = {
-        pageSizes: [250, 500, 1000],
-        pageSize: 250,
+        pageSizes: [5, 10, 15],
+        pageSize: 5,
         currentPage: 1
     };  
     $scope.setPagingData = function(data, page, pageSize){  
@@ -120,11 +120,20 @@ app.controller('dataResultItemCtrl',['$scope',"$http",function ($scope,$http) {
         data: 'myData',
         enablePaging: true,
         showFooter: true
-        // ,totalServerItems: 'totalServerItems',
-        // pagingOptions: $scope.pagingOptions,
-        // filterOptions: $scope.filterOptions
+        ,totalServerItems: 'totalServerItems',
+        pagingOptions: $scope.pagingOptions,
+        filterOptions: $scope.filterOptions
     };
     
+
+    $scope.images = [
+          {thumb: 'img/image-gallery/thumbs/1.jpg', img: 'img/image-gallery/1.jpg'},
+          {thumb: 'img/image-gallery/thumbs/2.jpg', img: 'img/image-gallery/2.jpg'},
+          {thumb: 'img/image-gallery/thumbs/3.jpg', img: 'img/image-gallery/3.jpg'},
+          {thumb: 'img/image-gallery/thumbs/4.jpg', img: 'img/image-gallery/4.jpg'},
+          {thumb: 'img/image-gallery/thumbs/5.jpg', img: 'img/image-gallery/5.jpg'},
+          {thumb: 'img/image-gallery/thumbs/6.jpg', img: 'img/image-gallery/6.jpg'}
+    ];
 
 
 }])
