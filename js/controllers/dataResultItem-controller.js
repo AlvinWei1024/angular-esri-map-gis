@@ -32,6 +32,10 @@ app.controller('dataResultItemCtrl',['$scope',"$http",function ($scope,$http) {
             $scope.dataInfo=res.info;        
         }
     });
+    $scope.$on("main-to-resultItem-isGalleryOpen",function(event,res){
+        $scope.expand=res;
+    });
+    
 
 
     $scope.myData=[

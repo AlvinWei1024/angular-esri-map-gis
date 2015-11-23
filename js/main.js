@@ -83,7 +83,10 @@ angular.module('app')
         $scope.$on("resultDelInDataResultFromLegend",function(event,data){
             $scope.$broadcast("resultDelInDataResultFromMain", data);
         });
-
+    //imageGallery
+        $scope.$on("imageGallery-to-main-isOpen",function(event,data){
+            $scope.$broadcast("main-to-resultItem-isGalleryOpen", data);
+        });
 
 
 

@@ -4,7 +4,7 @@
     "title":"墨卡托拓扑图",
     "projection":"Mercator",
     "zoom":3,
-    "thumbnailUrl":"http://resources.smartjs.info/images/polar/basemap-gallery/ocean.png",
+    "thumbnailUrl":"http://localhost:8000/img/basemap-gallery/ocean.png",
     "layers":["http://services.arcgisonline.com/arcgis/rest/services/World_Topo_Map/MapServer"]
   },
   {
@@ -12,7 +12,7 @@
     "title":"南极",
     "projection":"South",
     "zoom":3,
-    "thumbnailUrl":"http://resources.smartjs.info/images/polar/basemap-gallery/south.png",
+    "thumbnailUrl":"http://localhost:8000/img/basemap-gallery/south.png",
     "layers":["http://202.121.66.51:6688/arcgis/rest/services/%E5%8D%97%E6%9E%81%E5%85%A8%E5%9B%BEtiles2/MapServer"]
   },
   {
@@ -20,7 +20,7 @@
     "title":"墨卡托影像图",
     "projection":"Mercator",
     "zoom":3,
-    "thumbnailUrl":"http://resources.smartjs.info/images/polar/basemap-gallery/tempimagery.jpg",
+    "thumbnailUrl":"http://localhost:8000/img/basemap-gallery/tempimagery.jpg",
     "layers":["http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer"]
   },
   {
@@ -28,7 +28,7 @@
     "title":"北极影像",
     "projection":"North",
     "zoom":7,
-    "thumbnailUrl":"http://resources.smartjs.info/images/polar/basemap-gallery/northsite.png",
+    "thumbnailUrl":"http://localhost:8000/img/basemap-gallery/northsite.png",
     "layers":["http://services.arcgisonline.com/arcgis/rest/services/Polar/Arctic_Imagery/MapServer"]
   },
   {
@@ -36,7 +36,7 @@
     "title":"北极",
     "projection":"North",
     "zoom":7,
-    "thumbnailUrl":"http://resources.smartjs.info/images/polar/basemap-gallery/north.png",
+    "thumbnailUrl":"http://localhost:8000/img/basemap-gallery/north.png",
     "layers":["http://services.arcgisonline.com/arcgis/rest/services/Polar/Arctic_Ocean_Base/MapServer"]
   }
 ]

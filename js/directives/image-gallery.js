@@ -138,10 +138,12 @@ app.directive("imageGallery",['$document', '$timeout', '$q', '$templateCache',fu
 					$thumbwrapper.css({ width: calculatedWidth.visible_width + 'px' });
 					smartScroll(scope.index);
 				});
+				$scope.$emit("imageGallery-to-main-isOpen",true);
 			};
 
 			scope.closeGallery = function () {
 				scope.opened = false;
+				$scope.$emit("imageGallery-to-main-isOpen",false);
 			};
 
 			$body.bind('keydown', function(event) {
