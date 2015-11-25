@@ -9,42 +9,45 @@
         <div class='result-content'>
           <div ng-repeat="dataItem in dataList" class="result-view-content clearfix">
             <div class="result-view-Thumb  tableCellContainer">
-              <a class="result-view-img" href="" style="background-image: url({{dataItem.image}})" alt=""></a>
+              <a class="result-view-img" href="" style="background-image: url({{dataItem.image}})" alt="" ng-click="showDetails(dataItem)"></a>
             </div>
             <div class="result-view-title tableCellContainer">
               <div class="info">
                 <h4 class="title" ng-bind="dataItem.name">
                 </h4>
-                <div class="details"><a href="" ng-click="add=!add;showDetails(true)"><span ng-bind="dataItem.description"></span></a></div>
+                <div class="details">
+                  <a href="" ng-click="showDetails(dataItem)">
+                    <span ng-bind="dataItem.description"></span>
+                  </a>
+                </div>
               </div>
               <div class="controls clearfix">
-                <div class="state-control lfloat" ng-init="add=false">
-                  <button class="btn m-b-xs btn-sm btn-addon" ng-class="{'btn-info':!dataItem.selected, 'btn-danger':dataItem.selected}"  ng-click="addData(dataItem)" title="{{dataItem.selected?'移除':'添加'}}"><i class="fa" ng-class="{'fa-plus':!dataItem.selected, 'fa-minus':dataItem.selected}"></i></button>
+                <div class="state-control lfloat">  
+                  <button class="btn m-b-xs btn-sm btn-addon" ng-class="{'btn-info':!dataItem.selected, 'btn-danger':dataItem.selected}"  ng-click="addData(dataItem)" title="{{dataItem.selected?'移除':'添加'}}">
+                    <i class="fa" ng-class="{'fa-plus':!dataItem.selected, 'fa-minus':dataItem.selected}"></i>
+                  </button>
                 </div>
                 <div class="item-nenu lfloat"></div>
                 <div class="context lfloat">
-                  <a href="javascript:" title="浏览量">
+                  <a href="javascript:" title="浏览量" tooltip-placement="bottom" tooltip="浏览量">
                     <i class="fa fa-signal"></i>
                     <div ng-bind="dataItem.viewTimes"></div>
                   </a>
                 </div>
                 <div class="star lfloat"></div>
                 <div class="down-num lfloat">
-                  <a href="javascript:" title="下载量">
+                  <a href="javascript:" tooltip="下载量" tooltip-placement="bottom">
                     <i class="fa fa-cloud-download"></i>
                     <div ng-bind="dataItem.downloadTimes"></div>
                   </a>
                 </div>
                 <div class="time lfloat">
-                  <a href="javascript:" title="最后更新时间">
+                  <a href="javascript:" tooltip="最后更新时间" tooltip-placement="left">
                     <i class="glyphicon glyphicon-time"></i>
                     <div ng-bind="dataItem.updateTime"></div>
                   </a>
                 </div>
               </div>
-            </div>
-            <div class="data-details-table" ng-show="add">
-              <p ng-bind="dataItem.description"></p>
             </div>
           </div>
         </div>

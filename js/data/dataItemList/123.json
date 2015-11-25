@@ -1,0 +1,11 @@
+{	
+	"id":2,
+	"stationId":"xbt3",
+	"author":"海洋二所",
+	"image-url":"http://localhost:8000/img/dataItems/1.png",
+	"date":"2007-11-1",
+	"name":"pomoam",
+	"monitor":"ADCP",
+	"dataSetId":123,
+	"download-url":""
+}

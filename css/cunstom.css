@@ -432,9 +432,15 @@ ul.nav > li > ul.nav > li > a.auto {
 }
 .controls div a{
     display: inline-block;
-    width: 50px;
+    width: 60px;
     text-align: center;
     color:#ccc; 
+}
+.controls div a div{
+    height: 20px;
+    overflow: hidden;
+    word-break: break-all;
+    word-wrap: break-word;
 }
 .controls .state-control .btn{
     padding: 0;
