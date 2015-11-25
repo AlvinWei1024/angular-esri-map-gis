@@ -1,0 +1,21 @@
+<div class="image-list-viewer-cotent">
+	<div class="image-viewer">
+		<img class="image-body {{animation}}" ng-src="{{currentImg.src}}" alt="">
+		<span class="info" ng-bind="currentImg.discription"></span>
+		<span class="pre" ng-click="preImg()">
+			<i class="fa fa-2x fa-arrow-left"></i>
+		</span>
+		<span class="next" ng-click="nextImg()">
+			<i class="fa fa-2x fa-arrow-right"></i>
+		</span>
+	</div>
+	<div class="image-box">
+	  <div class="list-box" ng-repeat="(index,image) in imageSet" ng-click="selectImg(index)">
+	  	<img class="img-list" ng-src="{{image.src}}" alt="">
+	  	<span class="info" ng-bind="image.discription"></span>
+	  	<span class="img-masker"></span>
+	  	<span class="img-checked-masker" ng-show="selectIndex==index"></span>
+	  	<i class="fa fa-2x fa-check-circle img-checked" ng-show="selectIndex==index"></i>
+	  </div>
+	</div>
+</div>

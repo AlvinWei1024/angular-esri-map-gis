@@ -1,0 +1,205 @@
+html,body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+.image-list-viewer-cotent{
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.image-list-viewer-cotent .image-viewer{
+	overflow: hidden;
+    width: 100%;
+    height: 50%;
+    position: relative;
+    border-radius: 2px;
+    box-shadow: #999 5px 5px 10px;
+}
+.image-list-viewer-cotent .image-viewer .image-body{
+	width: 100%;
+	height: auto;
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.image-list-viewer-cotent .image-viewer .info{
+	background: rgba(0,0,0,0.5);
+	color: #fff;
+	padding: 20px 30px;
+	position: absolute;
+	bottom: 0;
+	z-index: 1998;
+	cursor: pointer;
+	display: none;
+}
+.image-list-viewer-cotent .image-viewer:hover .info{
+	display: block;
+}
+
+.image-list-viewer-cotent .image-viewer .next,
+.image-list-viewer-cotent .image-viewer .pre{
+	width: 50%;
+	height: 100%;
+	display: block;
+	position: absolute;
+	top:0;
+	z-index: 1999;
+	cursor: pointer;
+	opacity: 0.5;
+}
+.image-list-viewer-cotent .image-viewer .pre{
+	left: 0;
+}
+.image-list-viewer-cotent .image-viewer .next{
+	right: 0;
+}
+.image-list-viewer-cotent .image-viewer .next i,
+.image-list-viewer-cotent .image-viewer .pre i{
+	position: absolute;
+	top: 50%;
+	transform:translateY(-50%);
+	display: none;
+}
+.image-list-viewer-cotent .image-viewer .next i{
+	right: 0;
+}
+.image-list-viewer-cotent .image-viewer .pre i{
+	left: 0;
+}
+.image-list-viewer-cotent .image-viewer .pre:hover i,
+.image-list-viewer-cotent .image-viewer .next:hover i{
+	display: inline-block;
+}
+
+.image-list-viewer-cotent .image-box{
+	height: 50%;
+	position: relative;
+	margin: 5px 0;
+	overflow: scroll;
+}
+.image-list-viewer-cotent .image-box:after{
+	display: block;
+    *zoom: 1;
+    clear: both;
+    visibility: hidden;
+    content: "";
+}
+.image-list-viewer-cotent .image-box .list-box{
+    width: 80px;
+    font-size: 0.8rem;
+    height: 68px;
+    float: left;
+    margin: 5px 0px 0px 5px;
+    cursor: pointer;
+    box-shadow: #ccc 1px 1px 1px;
+    position: relative;
+}
+.image-list-viewer-cotent .image-box .img-list{
+	width: 80px;
+	height: 50px;
+}
+.image-list-viewer-cotent .image-box .list-box .img-masker{
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.image-list-viewer-cotent .image-box .list-box:hover .img-masker{
+	display: block;
+}
+.image-list-viewer-cotent .image-box .list-box .img-checked-masker{
+	display: block;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.image-list-viewer-cotent .image-box .list-box .info{
+	display: block;
+	margin-left: 2px;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 15px;
+	white-space: nowrap;
+	word-wrap: break-word;
+    word-break: break-all;
+}
+.image-list-viewer-cotent .image-box .list-box .img-checked{
+	position: absolute;
+	color: #FFAB00;
+    top: 3px;
+    right: 3px;
+}
+.image-list-viewer-cotent .moveToLeft{
+	animation: to_left 1s;
+	-moz-animation: to_left 1s;	/* Firefox */
+	-webkit-animation: to_left 1s;	/* Safari 和 Chrome */
+	-o-animation: to_left 1s;	/* Opera */
+}
+.image-list-viewer-cotent .moveToRight{
+	animation: to_right 1s;
+	-moz-animation: to_right 1s;	/* Firefox */
+	-webkit-animation: to_right 1s;	/* Safari 和 Chrome */
+	-o-animation: to_right 1s;	/* Opera */
+}
+@keyframes to_right
+{
+	0% {left:-150%;}
+	100% {left:50%;}
+}
+
+@-moz-keyframes to_right
+{
+	0% {left:-150%;}
+	100% {left:50%;}
+}
+
+@-webkit-keyframes to_right
+{
+	0% {left:-150%;}
+	100% {left:50%;}
+}
+
+@-o-keyframes to_right
+{
+	0% {left:-150%;}
+	100% {left:50%;}
+}
+
+@keyframes to_left
+{
+	0% {left:150%;}
+	100% {left:50%;}
+}
+
+@-moz-keyframes to_left /* Firefox */
+{
+	0% {left:150%;}
+	100% {left:50%;}
+}
+
+@-webkit-keyframes to_left /* Safari 和 Chrome */
+{
+	0% {left:150%;}
+	100% {left:50%;}
+}
+
+@-o-keyframes to_left /* Opera */
+{
+	0% {left:150%;}
+	100% {left:50%;}
+}
