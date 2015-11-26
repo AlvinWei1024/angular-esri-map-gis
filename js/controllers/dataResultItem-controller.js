@@ -1,10 +1,16 @@
-app.controller('dataResultItemCtrl',['$scope',"$http",function ($scope,$http) {
+app.controller('dataResultItemCtrl',['$scope',"$http","$timeout",function ($scope,$http,$timeout) {
     $scope.dataItem={};
     $scope.dataInfo={};
 	$scope.resultItemShowState="hide";
 	$scope.resultItemShow=false;
     $scope.expand=false;
+    $scope.firstInit=0;
 
+    $scope.fullExtent=function(){
+        $scope.expand=!$scope.expand;
+        angular.element(window).resize();
+        
+    };
     $scope.resultItemShowStateChange=function(){
         $scope.resultItemShow=!$scope.resultItemShow;
         if($scope.resultItemShow){
@@ -17,11 +23,20 @@ app.controller('dataResultItemCtrl',['$scope',"$http",function ($scope,$http) {
         }
     };
     $scope.$watch('resultItemShow',function(){
+        if(!$scope.firstInit++){
+            return;
+        }
         if($scope.resultItemShow){
             $scope.resultItemShowState="fadeInLeft";
         }
         else{
-            $scope.resultItemShowState="fadeOutLeft hide";
+            $scope.resultItemShowState="fadeOutLeft";
+            setTimeout(function(){
+                $scope.$apply(function () {
+                 　　$scope.resultItemShowState="hide";
+                });
+            },500);
+            
         }
     })
     $scope.$on("main-to-resultItem-showState",function(event,res){
@@ -35,44 +50,60 @@ app.controller('dataResultItemCtrl',['$scope',"$http",function ($scope,$http) {
     $scope.$on("main-to-resultItem-isGalleryOpen",function(event,res){
         $scope.expand=res;
     });
-    
+    var reqData={
+        dataInfo:"",
+        dataGrid:"",
+        dataImage:""
+    };
 
     $scope.tabs = [
       { title:'Dynamic Title 1', content:'Dynamic content 1' },
       { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
     ];
+
     $scope.myData=[
-        {"name": "Moroni", "allowance": 505050505050505050},
-        {"name": "Tiancum", "allowance": 53},
-        {"name": "Jacob", "allowance": 27},
-        {"name": "Nephi", "allowance": 29},
-        {"name": "Enos", "allowance": 34},
-        {"name": "Ether", "allowance": 42},
-        {"name": "Alma", "allowance": 43},
-        {"name": "Jared", "allowance": 21},
-        {"name": "Moroni", "allowance": 50},
-        {"name": "Tiancum", "allowance": 53},
-        {"name": "Jacob", "allowance": 27},
-        {"name": "Nephi", "allowance": 29},
-        {"name": "Enos", "allowance": 34},
-        {"name": "Ether", "allowance": 42},
-        {"name": "Alma", "allowance": 43},
-        {"name": "Jared", "allowance": 21},
-        {"name": "Moroni", "allowance": 50},
-        {"name": "Tiancum", "allowance": 53},
-        {"name": "Jacob", "allowance": 27},
-        {"name": "Nephi", "allowance": 29},
-        {"name": "Enos", "allowance": 34},
-        {"name": "Ether", "allowance": 42},
-        {"name": "Alma", "allowance": 43},
-        {"name": "Jared", "allowance": 21},
-        {"name": "Moroni", "allowance": 50},
-        {"name": "Tiancum", "allowance": 53},
-        {"name": "Jacob", "allowance": 27},
-        {"name": "Nephi", "allowance": 29},
-        {"name": "Enos", "allowance": 34},
-        {"name": "Ether", "allowance": 42}
+        {"站点": "南极站", "温度": 50, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "中山站", "温度": 53, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "泰山站", "温度": 27, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "长城站", "温度": 29, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "南极站", "温度": 50, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "中山站", "温度": 53, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "泰山站", "温度": 27, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "长城站", "温度": 29, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "南极站", "温度": 50, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "中山站", "温度": 53, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "泰山站", "温度": 27, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "长城站", "温度": 29, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "南极站", "温度": 50, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "中山站", "温度": 53, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "长城站", "温度": 29, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "南极站", "温度": 50, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "中山站", "温度": 53, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "泰山站", "温度": 27, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "长城站", "温度": 29, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "南极站", "温度": 50, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "中山站", "温度": 53, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "泰山站", "温度": 27, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "长城站", "温度": 29, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "南极站", "温度": 50, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "中山站", "温度": 53, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+        {"站点": "长城站", "温度": 29, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44}
     ]
+    function getTitles(arr){
+        if(!arr||!arr.length||typeof arr[0]!="object"){
+            console.log(typeof arr[0])
+            return null;
+        }
+        var title=[];
+        for(var key in arr[0]){
+            title.push(key);
+        }
+        return title;
+    }
+    $scope.titles=getTitles($scope.myData);
+    $scope.locationTo=function(data){
+        console.log(data);
+    }
     $scope.filterOptions = {
         filterText: "",
         useExternalFilter: true
@@ -80,9 +111,9 @@ app.controller('dataResultItemCtrl',['$scope',"$http",function ($scope,$http) {
     $scope.totalServerItems = 0;
     $scope.pagingOptions = {
         pageSizes: [5, 10, 15],
-        pageSize: 5,
+        pageSize: 15,
         currentPage: 1
-    };  
+    }; 
     $scope.setPagingData = function(data, page, pageSize){  
         var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
         $scope.myData = pagedData;
@@ -127,9 +158,9 @@ app.controller('dataResultItemCtrl',['$scope',"$http",function ($scope,$http) {
         data: 'myData',
         enablePaging: true,
         showFooter: true
-        ,totalServerItems: 'totalServerItems',
-        pagingOptions: $scope.pagingOptions,
-        filterOptions: $scope.filterOptions
+        ,totalServerItems: 'totalServerItems'
+        ,pagingOptions: $scope.pagingOptions
+        ,filterOptions: $scope.filterOptions
     };
     
 

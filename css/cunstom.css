@@ -1,5 +1,6 @@
 body{
     overflow: hidden;
+    background-color: #D5F1FD;
 }
 .text-center{
     text-align: center;
@@ -409,6 +410,19 @@ ul.nav > li > ul.nav > li > a.auto {
 .tab-content > .active{
     height: 100%;
 }
+
+
+.dataResultItem .result-content .grid-table{
+    height: 500px;
+    /*border: solid 1px #CCC;
+    border-radius:2px;
+    padding: 2px;*/
+}
+
+.dataResultItem .result-content .tab-container .tab-content {
+    padding: 4px;
+}
+
 .result-view-Thumb{
     float: left;
     width: 120px;
