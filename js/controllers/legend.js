@@ -1,10 +1,10 @@
 angular.module("app").controller('legendCtl',['esri_map','$scope',"$http",function (esriMap,$scope,$http){
 	// body...
-	var arcgisType=["arcgislayer","arcgistilelayer","arcgisdynamicLayer","arcgisFeatureLayer"];
+	var arcgisType=["arcgislayer","arcgistilelayer","arcgisdynamiclayer","arcgisfeaturelayer"];
 	Array.prototype.contain=function(search){
 		var res=null;
 		for(var i in this){
-	        if(this[i]==search){
+	        if(this[i]==search.toLowerCase()){
 	            res= this[i];
 	            break;
 	        }
@@ -26,9 +26,7 @@ angular.module("app").controller('legendCtl',['esri_map','$scope',"$http",functi
 					if(res){
 	                    if(res.type){
 	                        if(res.type=='GIS'){
-	                            console.log(this);
-	                            console.log("esriMap",esriMap)
-	                            console.log(esriMap.addLayer(res.url,res.subType,{id:msg.data.type}));
+	                            esriMap.addLayer(res.url,res.subType,{id:msg.data.type});
 	                        }
 	                        else{
 	                            
@@ -38,6 +36,7 @@ angular.module("app").controller('legendCtl',['esri_map','$scope',"$http",functi
 				});
 			}
 		}
+
 	});
 	$scope.$on("resultDelInLegendFromMain",function(event,data){
 		console.log(data)
@@ -53,10 +52,10 @@ angular.module("app").controller('legendCtl',['esri_map','$scope',"$http",functi
 	});
 
 	$scope.itemData=itemData;
-	for(var i=0;i<$scope.itemData.length;i++){
-		$scope.itemData[i].viewState="fa-eye";
-		console.log($scope.itemData);
-	}
+	// for(var i=0;i<$scope.itemData.length;i++){
+	// 	$scope.itemData[i].showState="fa-eye";
+	// 	console.log($scope.itemData);
+	// }
 	$scope.explored=true;
 	$scope.legendItems=[
 		{
@@ -71,7 +70,7 @@ angular.module("app").controller('legendCtl',['esri_map','$scope',"$http",functi
 		var item ={
 			name:name,
 			type:type,
-			viewState:"fa-eye",
+			showState:false,
 			id:id,
 			longitude:130,
 			latitude:30
@@ -96,38 +95,68 @@ angular.module("app").controller('legendCtl',['esri_map','$scope',"$http",functi
 		//}
 
 	};
+	var setItemShowState=function(index,state){
+		$scope.itemData=$scope.itemData.map(function(val,i){
+			if(i===index){
+				val.showState=state;
+			}
+			else {
+				console.log(i,index)
+				val.showState=!state;
+			}
+			return val;
+		});
+	}
+
 	//提供Eye图标变换接口
-	$scope.viewEyesClick = function(item){
-		if(item.viewState == "fa-eye"){
-			item.viewState = "fa-eye-slash";
-			//加入图层隐藏
+	$scope.viewEyesClick = function(index,item){
+		
+		if(item.showState === false){
+			setItemShowState(index,true);
+			showDetails(item);
 		}
-		else if(item.viewState == "fa-eye-slash"){
-			item.viewState = "fa-eye";
-			//加入图层显式
+		else if(item.showState === true){
+			item.showState=false;
+			hideDetails(item);
+			
 		}
 	};
 
+	
 
-	//提供各类数据形式图标显式接口
-	$scope.itemType =function(item){
-		if(item.type == "grid"){
-			return false;
-		}
-		else if(item.type == "image"||item.type == "arcgislayer"){
-			return true;
-		}
+	
+	$scope.isGISType =function(item){
+		return arcgisType.contain(item.type);
 	};
 	//Zoom
 	$scope.centerZoom =function(item){
-		esri_map.centerAtZoom(item.longitude,item.latitude,5);
+		esriMap.centerAtZoom(item.longitude,item.latitude,5);
 	};
 
+	var showDetails=function(obj){
+        var emit_data={
+            showState:true,
+            data:obj
+        };
+        $scope.$emit("resultItem-to-main-showState", emit_data);
+        if(arcgisType.contain(obj.type)){
+        	// esriMap. show layer with id 
+        }
+    };
+    var hideDetails=function(obj){
+        var emit_data={
+            showState:false,
+            data:obj
+        };
+        $scope.$emit("resultItem-to-main-showState", emit_data);
+    };
 
 	
 
 	
 }]);
+
+
 $(document).ready(function() {
 	$("#legend-content").mousedown(function(e){
 		$(this).css("cursor", "move"); //改变鼠标指针的形状

@@ -30,21 +30,12 @@
 
         
         $scope.showDetails=function(obj){
-            //getDataInfo by  dataSetId
-            console.log(obj.id);
-            var url="js/data/dataItemList/"+obj.id+".json";
-            $http.get(url).success(function(result) {
-                var emit_data={
-                    showState:true,
-                    data:obj,
-                    info:result
-                };
-                $scope.$emit("resultItem-to-main-showState", emit_data);
-
-            }).error(function(e){
-                console.error('request is failed:数据请求失败url:('+url+')');
-            });
-            
+            var emit_data={
+                showState:true,
+                data:obj
+                // ,info:result
+            };
+            $scope.$emit("resultItem-to-main-showState", emit_data);
         };
 
         $scope.addData=function(obj){

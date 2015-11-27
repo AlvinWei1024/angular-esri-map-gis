@@ -53,20 +53,10 @@
                     </div>
                   </div>
                 </tab>
-                <tab onclick="angular.element(window).resize();" heading="属性">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                       表标题xxxx
-                    </div>
-                    <div class="table-responsive">
-                      <div class="grid-table" ng-grid="gridOptions" style="min-height:220px"></div>
-                    </div>
-                  </div>
-                </tab>
                 <tab class="height-100" heading="成果图集">
                   <image-list-viewer image-set='images'></image-list-viewer>
                 </tab>
-                <tab class="height-100" heading="ui-grid">
+                <tab class="height-100" heading="属性">
                   <div class="panel panel-default">
                     <div class="panel-heading">
                       表头xxxxx
@@ -97,7 +87,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr ng-repeat="data in myData">
+                          <tr ng-repeat="data in dataGrid">
                             <td ng-repeat="title in titles">{{data[title]}}</td>
                             <td>
                               <span class="btn btn-sm btn-info" title="定位到" ng-click="locationTo(data)"><i class="icon icon-pointer"></i>定位到</span>

@@ -10,18 +10,18 @@
 		<ul ui-jq="sortable" class="list-group gutter list-group-sm list-group-sp legend-item">
 		    
 		    <li class="list-group-item" ng-repeat="(key,value) in itemData" draggable="true" >
-		      <span class="pull-right">
-				  <a href="javascript:void(0)"><i class="fa fa-fw {{value.viewState}} " ng-click="viewEyesClick(value)"  ng-show= "itemType(value)"></i></a>
-				  <a href="javascript:void(0)"><i class="fa fa-fw fa-table" ng-hide= "itemType(value)" ></i></a>
-				  <a href="javascript:void(0)"><i class="fa fa-fw fa-globe" ng-show= "itemType(value)" ng-click="centerZoom(value)"></i></a>
-				  <a href="javascript:void(0)"><i class="fa fa-fw fa-times" ng-click="delItem(key)"  ></i></a>
-		      </span>
-		      <div class="clear">
-		        {{value.name}}
-		      </div>
-		    </li>
+		        <span class="pull-right">
+					<a href="javascript:void(0)">
+					  	<i class="fa fa-fw" ng-class='{"fa-eye":value.showState,"fa-eye-slash":!value.showState}' ng-click="viewEyesClick(key,value)"></i>
+				  	</a>
+					  <!-- <a href="javascript:void(0)"><i class="fa fa-fw fa-table" ng-hide= "itemType(value)" ></i></a> -->
+					<a href="javascript:void(0)"><i class="fa fa-fw fa-globe" ng-show= "isGISType(value)" ng-click="centerZoom(value)"></i></a>
 
-		  </ul>
+					<a href="javascript:void(0)"><i class="fa fa-fw fa-times" ng-click="delItem(key)"  ></i></a>
+		        </span>
+		        <div class="clear">{{value.name}}</div>
+		    </li>
+		</ul>
 	</div>
 	
 </div>
