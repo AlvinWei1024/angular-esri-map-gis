@@ -8,6 +8,9 @@ body{
 .width-390{
     width: 390px;
 }
+.width-60-120{
+    width: calc(60% - 120px);
+}
 .width-100{
     width: 100%;
 }
@@ -147,13 +150,12 @@ ul.nav > li > ul.nav > li > a.auto {
         width: calc(100% - 420px);
         margin-left: 420px;
     }
-    .app-result-show .app-content{
-        width: calc(100% - 420px);
-        margin-left: 420px;
-    }
+    
     .app-result-show .app-resultItem-show .app-content{
-        width: calc(100% - 510px);
-        margin-left: 510px;
+        /*width: calc(100% - 510px);
+        margin-left: 510px;*/
+        margin-left: 60%;
+        width: 40%;
     }
 
 
