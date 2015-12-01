@@ -1,14 +1,20 @@
 {	
 	"dataInfo":{
 		"id":2,
+        "type":"arcgisFeatureLayer",
+        "name":"arcgisFeatureLayer",
 		"stationId":"xbt3",
 		"author":"海洋二所",
-		"image-url":"http://localhost:8000/img/dataItems/1.png",
 		"date":"2007-11-1",
-		"name":"pomoam",
 		"monitor":"ADCP",
 		"dataSetId":123,
-		"download-url":""
+        "viewTimes":12202,
+        "downloadTimes":5233,
+        "updateTime":"2015-09-09",
+        "description":"其地理坐标为南纬69度 22分24秒、东经76度22分40秒其地理坐标为南纬69度 22分24秒、东经76度22分40秒其地理坐标为南纬69度 22分24秒、东经76度22分40秒其地理坐标为南纬69度 22分24秒、东经76度22分40秒",
+        "image":"http://localhost:8000/img/dataItems/1.png",
+        "downloadUrl":"",
+        "lic":""
 	},
 	"dataGrid":[
         {"站点": "南极站", "温度": 50, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},

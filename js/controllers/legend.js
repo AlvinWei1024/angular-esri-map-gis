@@ -1,5 +1,6 @@
-angular.module("app").controller('legendCtl',['esri_map','$scope',"$http",function (esriMap,$scope,$http){
+angular.module("app").controller('legendCtl',['esri_map','_global','$scope',"$http",function (esriMap,g,$scope,$http){
 	// body...
+	console.log(g)
 	var arcgisType=["arcgislayer","arcgistilelayer","arcgisdynamiclayer","arcgisfeaturelayer"];
 	Array.prototype.contain=function(search){
 		var res=null;

@@ -425,6 +425,12 @@ ul.nav > li > ul.nav > li > a.auto {
     padding: 4px;
 }
 
+.dataResultItem .result-content .result-view-title{
+    margin-left: 5px;
+    width: calc(100% - 130px);
+}
+
+
 .result-view-Thumb{
     float: left;
     width: 120px;
@@ -442,7 +448,7 @@ ul.nav > li > ul.nav > li > a.auto {
     margin-left: 3px;
 
 }
-.result-view-title hr {
+.second-tree .result-view-title hr {
     margin:5px;
 }
 .result-view-title .title {
@@ -475,9 +481,12 @@ ul.nav > li > ul.nav > li > a.auto {
 }
 .controls div a{
     display: inline-block;
-    width: 60px;
+    width: 50px;
     text-align: center;
     color:#ccc; 
+}
+.controls div.time a{
+    width: 70px;
 }
 .controls div a div{
     height: 20px;

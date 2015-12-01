@@ -1,5 +1,5 @@
   <div class="height-100" ng-class="{'app-result-show':app.settings.resultPanel}">
-    <div class="height-100" ng-class="{'app-resultItem-show':app.settings.resultItemPanel}">
+    <div class="height-100" ng-init="app.settings.resultItemPanel=false" ng-class="{'app-resultItem-show':app.settings.resultItemPanel}">
     <!-- navbar -->
       <div data-ng-include=" 'tpl/blocks/header.html' " class="app-header navbar">
       </div>

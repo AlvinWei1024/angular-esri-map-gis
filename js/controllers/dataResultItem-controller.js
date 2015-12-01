@@ -8,6 +8,7 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout",function ($scop
     $scope.titles=[];
     $scope.dataGrid=[];
     $scope.dataInfo={};
+    $scope.thisSelected=false;
 
     $scope.fullExtent=function(){
         $scope.expand=!$scope.expand;
@@ -56,9 +57,11 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout",function ($scop
             var url="js/data/dataItemList/"+res.data.id+".json";
             $http.get(url).success(function(result) {
                 $scope.dataInfo=result.dataInfo;
+                console.log()
                 $scope.dataGrid=result.dataGrid;
                 $scope.titles=getTitles($scope.dataGrid);
                 $scope.images=result.dataImage;
+                $scope.thisSelected=res.data.selected;
             }).error(function(e){
                 console.error('request is failed:数据请求失败url:('+url+')');
             });
@@ -79,6 +82,23 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout",function ($scop
     //   { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
     // ];
     
+    $scope.addData=function(obj){
+        obj.selected=!obj.selected;
+        if(obj.selected===true){
+            var emit_data={
+                showState:true,
+                data:obj
+            };
+            $scope.$emit("resultAddInLegendFromDataResult", emit_data);//向父级发消息传送添加数据给legend
+        }
+        else{
+            console.log('remove');
+            $scope.$emit("resultDelInLegendFromDataResult", obj);//向父级发消息传送删除数据给legend
+        }
+        
+    };
+
+
 
     function getTitles(arr){
         if(!arr||!arr.length||typeof arr[0]!="object"){
@@ -101,6 +121,7 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout",function ($scop
         $scope.titles=[];
         $scope.dataGrid=[];
         $scope.dataInfo={};
+        $scope.thisSelected=false;
     }
 
 

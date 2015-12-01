@@ -59,7 +59,7 @@ angular.module('app')
 
 
      $scope.$on("resultItem-to-main-showState",function(event,res){
-
+        console.log("resultItem-to-main-showState",res)
         if(!res){
           return;
         }

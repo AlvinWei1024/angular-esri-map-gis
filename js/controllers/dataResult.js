@@ -1,11 +1,11 @@
 
-    app.controller('dataResultCtrl',["$scope","$http",function($scope,$http){
+    app.controller('dataResultCtrl',["$scope","$http","_global",function($scope,$http,Global){
         $scope.title="";
         $scope.resultShow=false;
         $scope.resultShowState="hide";
         $scope.dataList=[];
 
-
+        console.log(Global)
         $scope.resultShowStateChange=function(){
             $scope.resultShow=!$scope.resultShow;
         };
@@ -15,10 +15,9 @@
             $scope.resultShow=res.showState;
             $scope.dataList=res.req_data;
         });
-        $scope.$watch('resultShow',function(){
-            console.log("change");
-            if($scope.resultShow){
 
+        $scope.$watch('resultShow',function(){
+            if($scope.resultShow){
                 $scope.resultShowState="fadeInLeft";
                 $scope.$emit("result-to-main-stateChanged", true);
             }
@@ -38,6 +37,7 @@
             $scope.$emit("resultItem-to-main-showState", emit_data);
         };
 
+
         $scope.addData=function(obj){
             obj.selected=!obj.selected;
             if(obj.selected===true){
@@ -45,14 +45,18 @@
                     showState:true,
                     data:obj
                 };
+                Global.dataResultItem.push(obj);
                 $scope.$emit("resultAddInLegendFromDataResult", emit_data);//向父级发消息传送添加数据给legend
             }
             else{
-                console.log('remove');
+                Global.dataResultItem.deleteById(obj.id);
                 $scope.$emit("resultDelInLegendFromDataResult", obj);//向父级发消息传送删除数据给legend
             }
             
         };
+        $scope.itemExist=function(id){
+            return Global.dataResultItem.containItemById(id);
+        }
         //from legend to delete dataresult
         $scope.$on("resultDelInDataResultFromMain",function(event,data){
             if(data){
