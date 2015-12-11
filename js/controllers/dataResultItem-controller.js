@@ -1,4 +1,4 @@
-app.controller('dataResultItemCtrl',['$scope',"$http","$timeout",function ($scope,$http,$timeout) {
+app.controller('dataResultItemCtrl',['$scope',"$http","$timeout","_global",'esri_map',function ($scope,$http,$timeout,Global,esriMap) {
     
 	$scope.resultItemShowState="hide";
 	$scope.resultItemShow=false;
@@ -8,8 +8,8 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout",function ($scop
     $scope.titles=[];
     $scope.dataGrid=[];
     $scope.dataInfo={};
-    $scope.thisSelected=false;
-
+    $scope.item={};
+// .
     $scope.fullExtent=function(){
         $scope.expand=!$scope.expand;
         angular.element(window).resize();
@@ -18,10 +18,12 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout",function ($scop
     $scope.resultItemShowStateChange=function(){
         $scope.resultItemShow=!$scope.resultItemShow;
         if($scope.resultItemShow){
+            Global.setItemShowState($scope.item.id,true);
         	var data={showState:true};
             $scope.$emit("resultItem-to-main-showState",data);
         }
         else{
+            Global.setItemShowState($scope.item.id,false);
         	var data={showState:false};
             $scope.$emit("resultItem-to-main-showState",data);
         }
@@ -47,7 +49,8 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout",function ($scop
     $scope.$on("main-to-resultItem-showState",function(event,res){
         $scope.resultItemShow=res.showState;
         if($scope.resultItemShow){
-            $scope.title=res.data.name;
+            $scope.item=res.data;
+            
             // $scope.dataItem=res.data.name;
 
             //getDataInfo by  dataSetId
@@ -61,7 +64,8 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout",function ($scop
                 $scope.dataGrid=result.dataGrid;
                 $scope.titles=getTitles($scope.dataGrid);
                 $scope.images=result.dataImage;
-                $scope.thisSelected=res.data.selected;
+                
+
             }).error(function(e){
                 console.error('request is failed:数据请求失败url:('+url+')');
             });
@@ -82,18 +86,52 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout",function ($scop
     //   { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
     // ];
     
+    // $scope.addData=function(obj){
+    //     obj.selected=!obj.selected;
+    //     if(obj.selected===true){
+    //         var emit_data={
+    //             showState:true,
+    //             data:obj
+    //         };
+    //         $scope.$emit("resultAddInLegendFromDataResult", emit_data);//向父级发消息传送添加数据给legend
+    //     }
+    //     else{
+    //         console.log('remove');
+    //         $scope.$emit("resultDelInLegendFromDataResult", obj);//向父级发消息传送删除数据给legend
+    //     }
+        
+    // };
     $scope.addData=function(obj){
-        obj.selected=!obj.selected;
-        if(obj.selected===true){
-            var emit_data={
-                showState:true,
-                data:obj
-            };
-            $scope.$emit("resultAddInLegendFromDataResult", emit_data);//向父级发消息传送添加数据给legend
+        // 添加数据项
+        if(!Global.dataResultItem.containItemById(obj.id)){
+            obj.showState=true;
+            Global.dataResultItem.push(obj);
+            // 若为arcgisgis图层
+            if(Global.isArcGISLayer(obj.type)){
+            //get data by id
+                var req_url='js/data/'+obj.type+'.json';
+                $http.get(req_url).success(function(res){
+                    if(res){
+                        if(res.type){
+                            if(res.type=='GIS'){
+                                esriMap.addLayer(res.url,res.subType,{id:obj.type});
+                            }
+                            else{
+                                
+                            }
+                        }
+                    }
+                });
+            }
+            else{// 如不是arcgis图层
+                //to do ...
+            }
         }
-        else{
-            console.log('remove');
-            $scope.$emit("resultDelInLegendFromDataResult", obj);//向父级发消息传送删除数据给legend
+        else{// 删除数据项
+            //删除地图中的图层
+            esriMap.removeLayer(obj.type);
+            //删除图层对象数组中的图层对象
+            Global.dataResultItem.deleteById(obj.id);
         }
         
     };
@@ -116,12 +154,15 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout",function ($scop
         console.log(data);
         //to do...
     }
+    $scope.itemExist=function(id){
+            return Global.dataResultItem.containItemById(id);
+        }
     function reSetPenal(){
         $scope.images=[];
         $scope.titles=[];
         $scope.dataGrid=[];
         $scope.dataInfo={};
-        $scope.thisSelected=false;
+        
     }
 
 

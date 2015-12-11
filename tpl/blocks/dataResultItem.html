@@ -2,7 +2,7 @@
 	<div class="vbox height-100">
     <div class="wrapper b-b b-t b-light m-b text-center clearfix">
       <a ng-href class="pull-left text-muted text-md" ui-toggle-class="hide" target=".app-aside-right" ng-click="resultItemShowStateChange()"><i class="fa fa-chevron-left"></i>返回</a>
-      <span class="title">{{title}}</span>
+      <span class="title">{{item.name}}</span>
       <a ng-href class="pull-right text-muted text-md" ng-click="fullExtent()"><i class="fa" ng-class="{'fa-expand':!expand, 
       'fa-compress':expand}"></i></a>
     </div>
@@ -30,9 +30,10 @@
                       </div>
                       <div class="controls clearfix">
                         <div class="state-control lfloat">  
-                          <button class="btn m-b-xs btn-sm btn-addon" ng-class="{'btn-info':!thisSelected, 'btn-danger':thisSelected}"  ng-click="addData(dataInfo.dataSetId)" tooltip="{{thisSelected?'移除':'添加'}}">
-                            <i class="fa" ng-class="{'fa-plus':!thisSelected, 'fa-minus':thisSelected}"></i>
+                          <button class="btn m-b-xs btn-sm btn-addon" ng-class="{'btn-info':!itemExist(item.id), 'btn-danger':itemExist(item.id)}"  ng-click="addData(item)" tooltip="{{itemExist(item.id)?'移除':'添加'}}">
+                            <i class="fa" ng-class="{'fa-plus':!itemExist(item.id), 'fa-minus':itemExist(item.id)}"></i>
                           </button>
+
                         </div>
                         <div class="item-nenu lfloat"></div>
                         <div class="context lfloat">

@@ -73,16 +73,16 @@ angular.module('app')
         $scope.$broadcast("main-to-resultItem-showState", res);
       });
 
-    //legend
-      $scope.$on("resultAddInLegendFromDataResult",function(event,data){
-            $scope.$broadcast("resultAddInLegendFromMain", data);
-        });
-       $scope.$on("resultDelInLegendFromDataResult",function(event,data){
-            $scope.$broadcast("resultDelInLegendFromMain", data);
-        });
-        $scope.$on("resultDelInDataResultFromLegend",function(event,data){
-            $scope.$broadcast("resultDelInDataResultFromMain", data);
-        });
+    // //legend
+    //   $scope.$on("resultAddInLegendFromDataResult",function(event,data){
+    //         $scope.$broadcast("resultAddInLegendFromMain", data);
+    //     });
+    //    $scope.$on("resultDelInLegendFromDataResult",function(event,data){
+    //         $scope.$broadcast("resultDelInLegendFromMain", data);
+    //     });
+    //     $scope.$on("resultDelInDataResultFromLegend",function(event,data){
+    //         $scope.$broadcast("resultDelInDataResultFromMain", data);
+    //     });
     //imageGallery
         $scope.$on("imageGallery-to-main-isOpen",function(event,data){
             $scope.$broadcast("main-to-resultItem-isGalleryOpen", data);

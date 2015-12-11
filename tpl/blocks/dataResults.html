@@ -23,8 +23,8 @@
               </div>
               <div class="controls clearfix">
                 <div class="state-control lfloat">  
-                  <button class="btn m-b-xs btn-sm btn-addon" ng-class="{'btn-info':!dataItem.selected, 'btn-danger':dataItem.selected}"  ng-click="addData(dataItem)" title="{{dataItem.selected?'移除':'添加'}}">
-                    <i class="fa" ng-class="{'fa-plus':!dataItem.selected, 'fa-minus':dataItem.selected}"></i>
+                  <button class="btn m-b-xs btn-sm btn-addon" ng-class="{'btn-info':!itemExist(dataItem.id), 'btn-danger':itemExist(dataItem.id)}"  ng-click="addData(dataItem)" title="{{itemExist(dataItem.id)?'移除':'添加'}}">
+                    <i class="fa" ng-class="{'fa-plus':!itemExist(dataItem.id), 'fa-minus':itemExist(dataItem.id)}"></i>
                   </button>
                 </div>
                 <div class="item-nenu lfloat"></div>

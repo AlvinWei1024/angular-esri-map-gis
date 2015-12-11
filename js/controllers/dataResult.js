@@ -1,5 +1,5 @@
 
-    app.controller('dataResultCtrl',["$scope","$http","_global",function($scope,$http,Global){
+    app.controller('dataResultCtrl',["$scope","$http","_global",'esri_map',function($scope,$http,Global,esriMap){
         $scope.title="";
         $scope.resultShow=false;
         $scope.resultShowState="hide";
@@ -39,35 +39,44 @@
 
 
         $scope.addData=function(obj){
-            obj.selected=!obj.selected;
-            if(obj.selected===true){
-                var emit_data={
-                    showState:true,
-                    data:obj
-                };
+            // 添加数据项
+            if(!Global.dataResultItem.containItemById(obj.id)){
+                obj.showState=false;
                 Global.dataResultItem.push(obj);
-                $scope.$emit("resultAddInLegendFromDataResult", emit_data);//向父级发消息传送添加数据给legend
+                console.log(Global.dataResultItem)
+                // 若为arcgisgis图层
+                if(Global.isArcGISLayer(obj.type)){
+                //get data by id
+                    var req_url='js/data/'+obj.type+'.json';
+                    $http.get(req_url).success(function(res){
+                        if(res){
+                            if(res.type){
+                                if(res.type=='GIS'){
+                                    esriMap.addLayer(res.url,res.subType,{id:obj.type});
+                                }
+                                else{
+                                    
+                                }
+                            }
+                        }
+                    });
+                }
+                else{// 如不是arcgis图层
+                    //to do ...
+                }
             }
-            else{
+            else{// 删除数据项
+                //删除地图中的图层
+                esriMap.removeLayer(obj.type);
+                //删除图层对象数组中的图层对象
                 Global.dataResultItem.deleteById(obj.id);
-                $scope.$emit("resultDelInLegendFromDataResult", obj);//向父级发消息传送删除数据给legend
             }
             
         };
         $scope.itemExist=function(id){
             return Global.dataResultItem.containItemById(id);
         }
-        //from legend to delete dataresult
-        $scope.$on("resultDelInDataResultFromMain",function(event,data){
-            if(data){
-                for(i=0;i<$scope.dataList.length;i++){
-                    if($scope.dataList[i].id ==data){
-                        $scope.dataList[i].selected = false;
-                        break;
-                    }
-                }
-            }
-        });
+        
 
         
     }]);
