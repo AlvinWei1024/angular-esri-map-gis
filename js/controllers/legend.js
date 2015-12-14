@@ -45,20 +45,19 @@ angular.module("app").controller('legendCtl',['esri_map','_global','$scope',"$ht
 		if(index>itemData.length-1){
 			return;
 		}
-		//删除地图中的图层
-		esriMap.removeLayer(itemData[index].type);
-		//删除图层对象数组中的图层对象
-		Global.dataResultItem.deleteById($scope.itemData[index].id);
-
-		//else if(confirm("确认删除？")){
-			//加入删除图层
-			// console.log(itemData[i])
-			// //remove layer
-
-			// esriMap.removeLayer(itemData[i].type)
-			// // $scope.$emit("resultDelInDataResultFromLegend", $scope.itemData[index].id);//向父级发消息删除数据给DataResult
-			// $scope.itemData.splice(index,1);
-		//}
+		
+		try{
+			//删除地图中的图层
+			esriMap.removeLayer(itemData[index].type);
+		}
+		catch(e){
+			//
+		}
+		finally{
+			//删除图层对象数组中的图层对象
+			Global.dataResultItem.deleteById($scope.itemData[index].id);
+		}
+		
 	};
 	var setItemShowState=function(index,state){
 		itemData=Global.dataResultItem.map(function(val,i){

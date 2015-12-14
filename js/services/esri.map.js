@@ -3,6 +3,7 @@
  */
 
 angular.module('esri',[]).service('esri_map',function($timeout,$q){
+    var projectionServerURL='http://10.200.21.35:6080/arcgis/rest/services/Utilities/Geometry/GeometryServer';
     var self=this;
     this.map;
     this.mapDerfer= $q.defer();
@@ -256,7 +257,7 @@ angular.module('esri',[]).service('esri_map',function($timeout,$q){
                 }
                     var point =  new Point(lot,lat,new SpatialReference({wkid:4326}));
                     //此处进行经纬->投影坐标转换 利用geometry service
-                    var gsvc = new GeometryService('http://10.200.21.35:6080/arcgis/rest/services/Utilities/Geometry/GeometryServer');//geometry service 地址
+                    var gsvc = new GeometryService(projectionServerURL);//geometry service 地址
                     var params = new ProjectParameters();
                     params.geometries = [point];
                     params.outSR = new SpatialReference({wkid:wkid});

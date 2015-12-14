@@ -1,7 +1,7 @@
 [
 	{
 		"id":123,
-		"name":"arcgisFeatureLayer",
+		"name":"A海域数据(FeatureLayer)",
 		"menuItemId":2,
 		"viewTimes":12202,
 		"downloadTimes":5233,
@@ -14,13 +14,13 @@
 	},
 	{
 		"id":126,
-		"name":"arcgisdynamicLayer",
+		"name":"B海域数据(dynamicLayer)",
 		"menuItemId":2,
 		"viewTimes":12202,
 		"downloadTimes":5233,
 		"updateTime":"2015-09-09",
-		"description":"http://localhost:8000/img/dataItems/1.pnghttp://localhost:8000/img/dataItems/1.pnghttp://localhost:8000/img/dataItems/1.png",
-		"image":"image-url",
+		"description":"http://localhost:8000/img/dataItems/1.png",
+		"image":"http://localhost:8000/img/dataItems/1.png",
 		"type":"arcgisdynamicLayer",
 		"author":"",
 		"lic":""
@@ -59,7 +59,7 @@
 		"downloadTimes":5233,
 		"updateTime":"2015-09-09",
 		"description":"http://localhost:8000/img/dataItems/1.pnghttp://localhost:8000/img/dataItems/1.pnghttp://localhost:8000/img/dataItems/1.png",
-		"image":"image-url",
+		"image":"http://localhost:8000/img/dataItems/1.png",
 		"type":"titleLayer",
 		"author":"",
 		"lic":""
@@ -72,7 +72,7 @@
 		"downloadTimes":5233,
 		"updateTime":"2015-09-09",
 		"description":"http://localhost:8000/img/dataItems/1.pnghttp://localhost:8000/img/dataItems/1.pnghttp://localhost:8000/img/dataItems/1.png",
-		"image":"image-url",
+		"image":"http://localhost:8000/img/dataItems/1.png",
 		"type":"imageLayer",
 		"author":"",
 		"lic":""

@@ -67,9 +67,16 @@
             }
             else{// 删除数据项
                 //删除地图中的图层
-                esriMap.removeLayer(obj.type);
-                //删除图层对象数组中的图层对象
-                Global.dataResultItem.deleteById(obj.id);
+                try{
+                    esriMap.removeLayer(obj.type);
+                }
+                catch(e){
+                    // console.error("");
+                }
+                finally{
+                    //删除图层对象数组中的图层对象
+                    Global.dataResultItem.deleteById(obj.id);
+                }
             }
             
         };
