@@ -155,7 +155,8 @@ sample:
 
 // 根据数据项id获取该详细数据
 // 
-url: ..../dataItemList/{id}; 
+url: ..../dataItemList/{id};
+
 method: GET;
 result: 对象
 
@@ -164,42 +165,82 @@ dataInfo:数据详细信息，对象{}
 dataGrid:数据信息表 数组[]
 dataImage:图集 数组[]
 
-sample:
-{	
-	"dataInfo":{
-		"id":2,
-        "type":"arcgisFeatureLayer",
-        "name":"arcgisFeatureLayer",
-		"stationId":"xbt3",//站点
-		"author":"海洋二所",
-		"date":"2007-11-1",//数据创建时间
-		"monitor":"ADCP",//数据采集器
-		"dataSetId":123,//数据项id
-        "viewTimes":12202,
-        "downloadTimes":5233,
-        "updateTime":"2015-09-09",
-        "description":"其地理坐标为南纬69度 22分24秒、东经76度22分40秒其地理坐标为南纬69度 22分24秒、东经76度22分40秒其地理坐标为南纬69度 22分24秒、东经76度22分40秒其地理坐标为南纬69度 22分24秒、东经76度22分40秒",
-        "image":"http://localhost:8000/img/dataItems/1.png",
-        "downloadUrl":"",
-        "lic":""
-	},
-	"dataGrid":[
-        {"站点": "南极站", "温度": 50, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
-        {"站点": "中山站", "温度": 53, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
-        {"站点": "泰山站", "温度": 27, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
-        {"站点": "长城站", "温度": 29, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44}
-    ],
-	"dataImage":[
-        {
-            "src":"img/imgs/1.jpg",
-            "discription":"这是描述这是描述这是描述这是描述这这是描述这是描述这是描述这是描述这是描述这是描述这是描述"
-        },
-        {
-            "src":"img/imgs/10.jpg",
-            "discription":"这是描述这是描述这是描述这是描述这是述这是描述这是描述这是描述这是描述这是描述这是描述这是描述"
-        }
-    ]	
+sample:	
+{
+	"id":2,
+    "type":"arcgisFeatureLayer",
+    "name":"arcgisFeatureLayer",
+	"stationId":"xbt3",//站点
+	"author":"海洋二所",
+	"date":"2007-11-1",//数据创建时间
+	"monitor":"ADCP",//数据采集器
+	"dataSetId":123,//数据项id
+    "viewTimes":12202,
+    "downloadTimes":5233,
+    "updateTime":"2015-09-09",
+    "description":"其地理坐标为南纬69度 22分24秒、东经76度22分40秒其地理坐标为南纬69度 22分24秒、东经76度22分40秒其地理坐标为南纬69度 22分24秒、东经76度22分40秒其地理坐标为南纬69度 22分24秒、东经76度22分40秒",
+    "image":"http://localhost:8000/img/dataItems/1.png",
+    "downloadUrl":"",
+    "lic":""
 }
+
+
+// 根据数据项id获取数据表
+// 
+url: ..../dataItemList/{id}/grid?size=&start=;
+
+sample:
+[
+    {"站点": "南极站", "温度": 50, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+    {"站点": "中山站", "温度": 53, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+    {"站点": "泰山站", "温度": 27, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44},
+    {"站点": "长城站", "温度": 29, "盐度":44, "湿度":44, "风速":44, "风向":44, "研究单位":44, "水深":44}
+]
+
+// 根据数据项id获取图集
+// 
+url: ..../dataItemList/{id}/images?size=&start=;
+
+sample:
+[
+    {
+        "src":"img/imgs/1.jpg",
+        "discription":"这是描述这是描述这是描述这是描述这这是描述这是描述这是描述这是描述这是描述这是描述这是描述",
+        "position":[
+        	{lat:"",lot:""}
+    	]
+    },
+    {
+        "src":"img/imgs/10.jpg",
+        "discription":"这是描述这是描述这是描述这是描述这是述这是描述这是描述这是描述这是描述这是描述这是描述这是描述",
+        "position":[
+        	{lat:"",lot:""}
+    	]
+    }
+]
+
+
+
+
+//
+//缩略图：img
+ "img/imgs/1.jpg"
+
+//
+//
+//
+
+
+
+//大图：img
+ "img/imgs/hd/1.jpg"
+
+
+
+
+
+
+
 
 // 根据数据项id获取arcgis图层信息
 // 
@@ -220,43 +261,14 @@ sample:
   "type":"GIS",
   "subType":"ArcGISDynamicMapServiceLayer",
   "url":"http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Petroleum/KGS_OilGasFields_Kansas/MapServer",
-  "fields":[
-    {
-      "name":"OBJECTID",
-      "alis":"OBJECTID",
-      "type":"esriFieldTypeOID",
-      "unit":""
-    },
-    {
-      "name":"ID",
-      "alis":"ID",
-      "type":"esriFieldTypeString",
-      "unit":""
-    },
-    {
-      "name":"NAME",
-      "alis":"Name",
-      "type":"",
-      "unit":""
-    },
-    {
-      "name":"LANDAREA ",
-      "alis":"Land Area in Square Miles",
-      "type":"esriFieldTypeDouble",
-      "unit":""
-    },
-    {
-      "name":"POPGRW0010 ",
-      "alis":"2000-2010 Population Annual Compound Growth Rate (U.S. Census)",
-      "type":"esriFieldTypeDouble",
-      "unit":""
-    }
-  ]
+  "popupTemplate":"id:{{id}} /br name:{{name}}"
 }
+
+
 
 // 全局搜索
 // 
-url: ..../globalSearch/{any}; 
+url: ..../globalSearch?keyword=12e1e;
 method: GET;
 result: 数组
 

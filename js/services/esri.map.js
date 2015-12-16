@@ -3,7 +3,7 @@
  */
 
 angular.module('esri',[]).service('esri_map',function($timeout,$q){
-    var projectionServerURL='http://10.200.21.35:6080/arcgis/rest/services/Utilities/Geometry/GeometryServer';
+    var projectionServerURL='http://202.121.66.51:6688/arcgis/rest/services/Utilities/Geometry/GeometryServer';
     var self=this;
     this.map;
     this.mapDerfer= $q.defer();
