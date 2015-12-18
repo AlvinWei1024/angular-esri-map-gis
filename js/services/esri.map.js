@@ -328,7 +328,8 @@ angular.module('esri',[]).service('esri_map',function($timeout,$q){
             self.removeLayer=function(layerID){
                 self.map.removeLayer(self.map.getLayer(layerID));
             }
-        })
+        });
+        
 //
     }
 

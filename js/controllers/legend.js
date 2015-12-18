@@ -1,17 +1,17 @@
 angular.module("app").controller('legendCtl',['esri_map','_global','$scope',"$http",function (esriMap,Global,$scope,$http){
 	// body...
 	
-	var arcgisType=["arcgislayer","arcgistilelayer","arcgisdynamiclayer","arcgisfeaturelayer"];
-	Array.prototype.contain=function(search){
-		var res=null;
-		for(var i in this){
-	        if(this[i]==search.toLowerCase()){
-	            res= this[i];
-	            break;
-	        }
-	    }
-	    return res;
-	}
+	// var arcgisType=["arcgislayer","arcgistilelayer","arcgisdynamiclayer","arcgisfeaturelayer"];
+	// Array.prototype.contain=function(search){
+	// 	var res=null;
+	// 	for(var i in this){
+	//         if(this[i]==search.toLowerCase()){
+	//             res= this[i];
+	//             break;
+	//         }
+	//     }
+	//     return res;
+	// }
 	// var itemData =[];
 	var itemData=Global.dataResultItem;
 	$scope.itemData=itemData;
@@ -88,11 +88,38 @@ angular.module("app").controller('legendCtl',['esri_map','_global','$scope',"$ht
 
 	
 	$scope.isGISType =function(item){
-		return arcgisType.contain(item.type);
+		return Global.isArcGISLayer(item.type);
 	};
 	//Zoom
 	$scope.centerZoom =function(item){
-		esriMap.centerAtZoom(item.longitude,item.latitude,5);
+		if(Global.isArcGISLayer(item.type)){
+        //get data by id
+            var req_url='js/data/'+item.type+'.json';
+            $http.get(req_url).success(function(res){
+                if(res){
+                    if(res.type){
+                        if(res.type=='GIS'){
+                            // 
+                            // esriMap.centerAndZoomToLayerByLayerId(item.type);
+                            try{
+                            	esriMap.map.setExtent(esriMap.map.getLayer(item.type).fullExtent);
+                            }
+                            catch(e){
+                            	//...
+                            }
+                            
+                        }
+                        else{
+                            
+                        }
+                    }
+                }
+            });
+        }
+        else{// 如不是arcgis图层
+            //to do ...
+        }
+		// esriMap.centerAtZoom(item.longitude,item.latitude,5);
 	};
 
 	var showDetails=function(obj){
@@ -101,7 +128,7 @@ angular.module("app").controller('legendCtl',['esri_map','_global','$scope',"$ht
             data:obj
         };
         $scope.$emit("resultItem-to-main-showState", emit_data);
-        if(arcgisType.contain(obj.type)){
+        if(Global.isArcGISLayer(obj.type)){
         	// esriMap. show layer with id 
         }
     };
