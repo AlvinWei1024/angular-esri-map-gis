@@ -20,8 +20,8 @@ html,body{
     box-shadow: #999 5px 5px 10px;
 }
 .image-list-viewer-cotent .image-viewer .image-body{
-	width: 100%;
-	height: auto;
+	width: auto;
+	height: 100%;
     cursor: pointer;
     position: absolute;
     display: block;
@@ -36,6 +36,7 @@ html,body{
 	position: absolute;
 	bottom: 0;
 	z-index: 1998;
+	width: 100%;
 	cursor: pointer;
 	display: none;
 }

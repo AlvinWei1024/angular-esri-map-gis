@@ -2,7 +2,7 @@
 	"dataInfo":{
 		"id":2,
         "type":"arcgisFeatureLayer",
-        "name":"arcgisFeatureLayer",
+        "name":"海域数据",
 		"stationId":"xbt3",
 		"author":"海洋二所",
 		"date":"2007-11-1",

@@ -4,9 +4,14 @@
  * Created by ALVIN on 2015/6/18.
  */
 angular.module("app")
-    .controller('navCtrl',["$scope","$http",function($scope,$http){
+    .controller('navCtrl',["$scope","$http","_global",function($scope,$http,_config){
         var treeViewData=[{}];
-        var menu_items_url='js/data/menuItems.json';
+
+        // 地址 
+        var menu_items_url=_config.http_server+'menus'; 
+
+        //to fixed
+        menu_items_url='js/data/menuItems.json';
         $http.get(menu_items_url).success(function(result) {
             treeViewData=result;
             $scope.navData=treeViewData;
@@ -18,7 +23,7 @@ angular.module("app")
         $scope.getResult=function (event) {
             console.log(event);
         }
-        $scope.doNothing=function(){
+        $scope.doNothing=function(a){
             //do nothing
         }
         $scope.emitData=function(data){

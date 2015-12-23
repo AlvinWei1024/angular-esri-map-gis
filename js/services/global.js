@@ -1,5 +1,7 @@
 angular.module('global',[]).service('_global', ['$q', function($q){
 	var content=this;
+	var http_server="http://localhost:3000/";
+	this.http_server=http_server;
 	this.dataResultItem=[];
 	this.itemShowState=[];
 	var ArcGISType=["arcgislayer","arcgistilelayer","arcgisdynamiclayer","arcgisfeaturelayer"];

@@ -21,14 +21,14 @@
 						"submenu":[]
 					},
 					{	"id":"1-1-2",
-						"name":" 南极数据2",
+						"name":" 南极数据",
 						"parent":"1-1",
 						"selected":false,
 						"icon":"url",
 						"submenu":[]
 					},
 					{	"id":"1-1-3",
-						"name":" 南极遥感113",
+						"name":" 南极遥感",
 						"parent":"1-1",
 						"selected":false,
 						"icon":"url",
@@ -114,10 +114,34 @@
 		"icon":"glyphicon-th-large text-success",
 		"submenu":[
 			{	"id":"2",
-				"name":"南极遥感",
+				"name":"成果产品2",
 				"parent":"1",
 				"icon":"url",
-				"submenu":[]
+				"submenu":[
+					{	
+						"id":"2",
+						"name":"成果产品3",
+						"parent":"1",
+						"icon":"url",
+						"submenu":[
+							{	
+								"id":"2",
+								"name":"成果产品4",
+								"parent":"1",
+								"icon":"url",
+								"submenu":[
+									{	
+										"id":"2",
+										"name":"成果产品5",
+										"parent":"1",
+										"icon":"url",
+										"submenu":[]
+									}
+								]
+							}
+						]
+					}
+				]
 			}
 		]
 	}

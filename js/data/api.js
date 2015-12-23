@@ -68,7 +68,7 @@ result: 数组对象
 id:id, name:数据名称, menuItemId:树形菜单的id, viewTimes:浏览次数,
 downloadTimes:下载次数, updateTime:最后更新时间,
 description:数据描述, image:数据项显示图片, 
-type:数据类型 arcgisFeatureLayer arcgisdynamicLayer grid image titleLayer imageLayer
+type:数据类型 arcgisFeatureLayer arcgisDynamicLayer grid image titleLayer imageLayer
 author:数据单位
 
 sample:

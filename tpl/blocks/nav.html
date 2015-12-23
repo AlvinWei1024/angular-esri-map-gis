@@ -14,13 +14,13 @@
         </a>
         <ul class="nav nav-sub dk">
             <li class="nav-sub-header">
-                <a href ng-click="rootNavData.submenu?emitData(rootNavData):doNothing()">
+                <a href>
                     <span>{{rootNavData.name}}</span>
                 </a>
             </li>
             <li ng-repeat="navData1 in rootNavData.submenu" ui-sref-active="{{navData1.selected?active:' '}}">
-                <a class="auto">
-                    <span class="pull-right text-muted">
+                <a class="auto" ng-click="navData1.submenu.length?doNothing():emitData(rootNavData)">
+                    <span ng-show="navData1.submenu.length" class="pull-right text-muted">
                         <i class="fa fa-fw fa-angle-right text"></i>
                         <i class="fa fa-fw fa-angle-down text-active"></i>
                     </span>
@@ -29,14 +29,65 @@
                 </a>
                 <ul class="nav nav-sub lt">
                     <li class="nav-sub-header">
-                        <a href ng-click="navData1.submenu?emitData(navData1):doNothing()">
+                        <a href>
                             <span>{{navData1.name}}</span>
                         </a>
                     </li>
-                    <li ng-repeat="subNavData in navData1.submenu" ui-sref-active="{{subNavData.selected?active:' '}}">
-                        <a class="click-node" ng-click="subNavData.submenu?emitData(subNavData):doNothing()">
-                            <span class="click-node">{{subNavData.name}}</span>
+                    <li ng-repeat="navData2 in navData1.submenu" ui-sref-active="{{navData2.selected?active:' '}}">
+                        <a class="auto" class="click-node" ng-click="navData2.submenu.length?doNothing():emitData(navData2)">
+                            <span ng-show="navData2.submenu.length" class="pull-right text-muted">
+                                <i class="fa fa-fw fa-angle-right text"></i>
+                                <i class="fa fa-fw fa-angle-down text-active"></i>
+                            </span>
+                            <i class="glyphicon {{navData2.icon}} icon text-primary-dker"></i>
+                            <span class="font-bold1" >{{navData2.name}}</span>
                         </a>
+                        <ul class="nav nav-sub lt">
+                            <li class="nav-sub-header">
+                                <a href>
+                                    <span>{{navData2.name}}</span>
+                                </a>
+                            </li>
+                            <li ng-repeat="navData3 in navData2.submenu" ui-sref-active="{{navData3.selected?active:' '}}">
+                                <a class="auto" class="click-node" ng-click="navData3.submenu.length?doNothing():emitData(navData3)">
+                                    <span ng-show="navData3.submenu.length" class="pull-right text-muted">
+                                        <i class="fa fa-fw fa-angle-right text"></i>
+                                        <i class="fa fa-fw fa-angle-down text-active"></i>
+                                    </span>
+                                    <i class="glyphicon {{navData3.icon}} icon text-primary-dker"></i>
+                                    <span class="font-bold1" >{{navData3.name}}</span>
+                                </a>
+                                <ul>
+                                    <li class="nav-sub-header">
+                                        <a href>
+                                            <span>{{navData3.name}}</span>
+                                        </a>
+                                    </li>
+                                    <li ng-repeat="navData4 in navData3.submenu" ui-sref-active="{{navData4.selected?active:' '}}">
+                                        <a class="auto" class="click-node" ng-click="navData4.submenu.length?doNothing():emitData(navData4)">
+                                            <span ng-show="navData4.submenu.length" class="pull-right text-muted">
+                                                <i class="fa fa-fw fa-angle-right text"></i>
+                                                <i class="fa fa-fw fa-angle-down text-active"></i>
+                                            </span>
+                                            <i class="glyphicon {{navData4.icon}} icon text-primary-dker"></i>
+                                            <span class="font-bold1" >{{navData4.name}}</span>
+                                        </a>
+                                        <ul>
+                                            <li class="nav-sub-header">
+                                                <a href>
+                                                    <span>{{navData4.name}}</span>
+                                                </a>
+                                            </li>
+                                            <li ng-repeat="navData5 in navData4.submenu" ui-sref-active="{{navData5.selected?active:' '}}">
+                                                <a class="auto" class="click-node" ng-click="navData5.submenu.length?doNothing():emitData(navData5)">
+                                                    <span class="click-node">{{navData5.name}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </li>
@@ -44,5 +95,5 @@
     </li>
     <li class="line dk"></li>
 </ul>
-
+               
 <!-- / list -->
