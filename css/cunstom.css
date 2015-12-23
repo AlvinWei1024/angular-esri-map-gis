@@ -450,6 +450,8 @@ ul.nav > li > ul.nav > li > a.auto {
     display: inline-block;
     width: 120px;
     height: 100px;
+    background-repeat: no-repeat;
+    background-size:auto 100px;
 }
 .result-view-title {
     float: left;
@@ -457,11 +459,25 @@ ul.nav > li > ul.nav > li > a.auto {
     margin-left: 3px;
 
 }
+.result-view-title .info{
+  cursor: pointer;
+}
 .second-tree .result-view-title hr {
     margin:5px;
 }
 .result-view-title .title {
     margin:5px;
+    display: block;
+    /*white-space:nowrap; */
+    word-wrap: break-word;
+    width:215px; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    line-height: 1em;
+    height: 1em;
+    display: -webkit-box;  
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical; 
 }
 .result-view-title .info .details {
     height:44px;

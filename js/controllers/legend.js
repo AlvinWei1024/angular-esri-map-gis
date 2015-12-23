@@ -48,7 +48,7 @@ angular.module("app").controller('legendCtl',['esri_map','_global','$scope',"$ht
 		
 		try{
 			//删除地图中的图层
-			esriMap.removeLayer(itemData[index].type);
+			esriMap.removeLayer(itemData[index].type+itemData[index].id);
 		}
 		catch(e){
 			//
@@ -93,28 +93,12 @@ angular.module("app").controller('legendCtl',['esri_map','_global','$scope',"$ht
 	//Zoom
 	$scope.centerZoom =function(item){
 		if(Global.isArcGISLayer(item.type)){
-        //get data by id
-            var req_url='js/data/'+item.type+'.json';
-            $http.get(req_url).success(function(res){
-                if(res){
-                    if(res.type){
-                        if(res.type=='GIS'){
-                            // 
-                            // esriMap.centerAndZoomToLayerByLayerId(item.type);
-                            try{
-                            	esriMap.map.setExtent(esriMap.map.getLayer(item.type).fullExtent);
-                            }
-                            catch(e){
-                            	//...
-                            }
-                            
-                        }
-                        else{
-                            
-                        }
-                    }
-                }
-            });
+            try{
+            	esriMap.map.setExtent(esriMap.map.getLayer(item.type+item.id).fullExtent);
+            }
+            catch(e){
+            	//...
+            }
         }
         else{// 如不是arcgis图层
             //to do ...

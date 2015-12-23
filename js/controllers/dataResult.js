@@ -1,11 +1,9 @@
 
-    app.controller('dataResultCtrl',["$scope","$http","_global",'esri_map',function($scope,$http,Global,esriMap){
+    app.controller('dataResultCtrl',["$scope","$http","_global",'esri_map',function($scope,$http,_config,esriMap){
         $scope.title="";
         $scope.resultShow=false;
         $scope.resultShowState="hide";
         $scope.dataList=[];
-
-        console.log(Global)
         $scope.resultShowStateChange=function(){
             $scope.resultShow=!$scope.resultShow;
         };
@@ -40,23 +38,19 @@
 
         $scope.addData=function(obj){
             // 添加数据项
-            if(!Global.dataResultItem.containItemById(obj.id)){
+            if(!_config.dataResultItem.containItemById(obj.id)){
                 obj.showState=false;
-                Global.dataResultItem.push(obj);
-                console.log(Global.dataResultItem)
+                _config.dataResultItem.push(obj);
+                console.log(_config.dataResultItem)
                 // 若为arcgisgis图层
-                if(Global.isArcGISLayer(obj.type)){
+                if(_config.isArcGISLayer(obj.type)){
                 //get data by id
-                    var req_url='js/data/'+obj.type+'.json';
+                    var req_url=_config.http_server+'geoServices/'+obj.id;
+                    // var req_url='js/data/'+obj.type+'.json';
                     $http.get(req_url).success(function(res){
                         if(res){
-                            if(res.type){
-                                if(res.type=='GIS'){
-                                    esriMap.addLayer(res.url,res.subType,{id:obj.type});
-                                }
-                                else{
-                                    
-                                }
+                            if(res.url){
+                                esriMap.addLayer(res.url,res.subType,{id:obj.type+obj.id});
                             }
                         }
                     });
@@ -68,20 +62,20 @@
             else{// 删除数据项
                 //删除地图中的图层
                 try{
-                    esriMap.removeLayer(obj.type);
+                    esriMap.removeLayer(obj.type+obj.id);
                 }
                 catch(e){
                     // console.error("");
                 }
                 finally{
                     //删除图层对象数组中的图层对象
-                    Global.dataResultItem.deleteById(obj.id);
+                    _config.dataResultItem.deleteById(obj.id);
                 }
             }
             
         };
         $scope.itemExist=function(id){
-            return Global.dataResultItem.containItemById(id);
+            return _config.dataResultItem.containItemById(id);
         }
         
 

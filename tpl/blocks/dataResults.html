@@ -12,18 +12,18 @@
               <a class="result-view-img" href="" style="background-image: url({{dataItem.image}})" alt="" ng-click="showDetails(dataItem)"></a>
             </div>
             <div class="result-view-title tableCellContainer">
-              <div class="info">
+              <div class="info"  ng-click="showDetails(dataItem)">
                 <h4 class="title" ng-bind="dataItem.name">
                 </h4>
                 <div class="details">
-                  <a href="" ng-click="showDetails(dataItem)">
+                  <a href="">
                     <span ng-bind="dataItem.description"></span>
                   </a>
                 </div>
               </div>
               <div class="controls clearfix">
                 <div class="state-control lfloat">  
-                  <button class="btn m-b-xs btn-sm btn-addon" ng-class="{'btn-info':!itemExist(dataItem.id), 'btn-danger':itemExist(dataItem.id)}"  ng-click="addData(dataItem)" title="{{itemExist(dataItem.id)?'移除':'添加'}}">
+                  <button class="btn m-b-xs btn-sm btn-addon" ng-class="{'btn-info':!itemExist(dataItem.id), 'btn-danger':itemExist(dataItem.id)}"  ng-click="addData(dataItem)"  tooltip="{{itemExist(dataItem.id)?'移除':'添加'}}">
                     <i class="fa" ng-class="{'fa-plus':!itemExist(dataItem.id), 'fa-minus':itemExist(dataItem.id)}"></i>
                   </button>
                 </div>

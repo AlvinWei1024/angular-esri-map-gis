@@ -1,4 +1,4 @@
-app.controller('dataResultItemCtrl',['$scope',"$http","$timeout","_global",'esri_map',function ($scope,$http,$timeout,Global,esriMap) {
+app.controller('dataResultItemCtrl',['$scope',"$http","$timeout","_global",'esri_map',function ($scope,$http,$timeout,_config,esriMap) {
     
 	$scope.resultItemShowState="hide";
 	$scope.resultItemShow=false;
@@ -9,6 +9,12 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout","_global",'esri
     $scope.dataGrid=[];
     $scope.dataInfo={};
     $scope.item={};
+
+    var hideTitle=["id","station"];
+    
+    $scope.titleContain=function(title){
+        return arrayContain(hideTitle,title).length;
+    };
 // .
     $scope.fullExtent=function(){
         $scope.expand=!$scope.expand;
@@ -18,12 +24,12 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout","_global",'esri
     $scope.resultItemShowStateChange=function(){
         $scope.resultItemShow=!$scope.resultItemShow;
         if($scope.resultItemShow){
-            Global.setItemShowState($scope.item.id,true);
+            _config.setItemShowState($scope.item.id,true);
         	var data={showState:true};
             $scope.$emit("resultItem-to-main-showState",data);
         }
         else{
-            Global.setItemShowState($scope.item.id,false);
+            _config.setItemShowState($scope.item.id,false);
         	var data={showState:false};
             $scope.$emit("resultItem-to-main-showState",data);
         }
@@ -57,20 +63,41 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout","_global",'esri
             console.log(res.data.id);
             //数据id
             //元数据信息
-            var url="js/data/dataItemList/"+res.data.id+".json";
-            $http.get(url).success(function(result) {
-                $scope.dataInfo=result.dataInfo;
-                console.log()
-                $scope.dataGrid=result.dataGrid;
-                $scope.titles=getTitles($scope.dataGrid);
-                $scope.images=result.dataImage;
-                
+            var url_info=_config.http_server+'dataSets/'+res.data.id;
+            //"js/data/dataItemList/"+res.data.id+".json";
+
+            $http.get(url_info).success(function(result) {
+                $scope.dataInfo=result;
 
             }).error(function(e){
-                console.error('request is failed:数据请求失败url:('+url+')');
+                console.error('request is failed:数据请求失败url:('+url_info+')');
             });
+
             // 属性数据表
+            var url_grid=_config.http_server+'rdatas/'+res.data.id;
+            $http.get(url_grid).success(function(result) {
+                var rgrid=_config.cloneObj(result);
+                // $scope.dataGrid=rgrid.filter(function(val){
+                //     if(val.id) delete val.id;
+                //     if(val.station) delete val.station;
+                //     return val;
+                // });
+                $scope.dataGrid=rgrid;
+                $scope.titles=getTitles($scope.dataGrid);
+
+            }).error(function(e){
+                console.error('request is failed:数据请求失败url:('+url_grid+')');
+            });
+            
             // 成果图集
+            var url_image=_config.http_server+'gains/dataSet/'+res.data.id;
+            $http.get(url_image).success(function(result) {
+                console.log(result.datas)
+                $scope.images=result.datas;
+
+            }).error(function(e){
+                console.error('request is failed:数据请求失败url:('+url_image+')');
+            });
         }
         else{
             reSetPenal();
@@ -103,22 +130,18 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout","_global",'esri
     // };
     $scope.addData=function(obj){
         // 添加数据项
-        if(!Global.dataResultItem.containItemById(obj.id)){
+        if(!_config.dataResultItem.containItemById(obj.id)){
             obj.showState=true;
-            Global.dataResultItem.push(obj);
+            _config.dataResultItem.push(obj);
             // 若为arcgisgis图层
-            if(Global.isArcGISLayer(obj.type)){
+            if(_config.isArcGISLayer(obj.type)){
             //get data by id
-                var req_url='js/data/'+obj.type+'.json';
+                var req_url=_config.http_server+'geoServices/'+obj.id;
+                // var req_url='js/data/'+obj.type+'.json';
                 $http.get(req_url).success(function(res){
                     if(res){
-                        if(res.type){
-                            if(res.type=='GIS'){
-                                esriMap.addLayer(res.url,res.subType,{id:obj.type});
-                            }
-                            else{
-                                
-                            }
+                        if(res.url){
+                            esriMap.addLayer(res.url,res.subType,{id:obj.type+obj.id});
                         }
                     }
                 });
@@ -130,18 +153,18 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout","_global",'esri
         else{// 删除数据项
             //删除地图中的图层
             try{
-                esriMap.removeLayer(obj.type);
+                esriMap.removeLayer(obj.type+obj.id);
             }
             catch(e){
                 // console.error("");
             }
             finally{
                 //删除图层对象数组中的图层对象
-                Global.dataResultItem.deleteById(obj.id);
+                _config.dataResultItem.deleteById(obj.id);
             }
             // esriMap.removeLayer(obj.type);
             // //删除图层对象数组中的图层对象
-            // Global.dataResultItem.deleteById(obj.id);
+            // _config.dataResultItem.deleteById(obj.id);
         }
         
     };
@@ -157,15 +180,17 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout","_global",'esri
         for(var key in arr[0]){
             title.push(key);
         }
+        console.log(title)
         return title;
     }
+
 
     $scope.locationTo=function(data){
         console.log(data);
         //to do...
     }
     $scope.itemExist=function(id){
-            return Global.dataResultItem.containItemById(id);
+            return _config.dataResultItem.containItemById(id);
         }
     function reSetPenal(){
         $scope.images=[];
@@ -174,6 +199,12 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout","_global",'esri
         $scope.dataInfo={};
         
     }
-
+    function arrayContain(arr,string){
+        var a=arr.filter(function(val){
+            return val===string;
+            
+        });
+        return a;
+    };
 
 }])

@@ -4,7 +4,7 @@ angular.module('global',[]).service('_global', ['$q', function($q){
 	this.http_server=http_server;
 	this.dataResultItem=[];
 	this.itemShowState=[];
-	var ArcGISType=["arcgislayer","arcgistilelayer","arcgisdynamiclayer","arcgisfeaturelayer"];
+	var ArcGISType=["arcgisimagelayer","arcgistilelayer","arcgisdynamiclyaer","arcgisfeaturelayer"];
 	this.isArcGISLayer=function(type){
 		var res=false;
 		var tempType=type.toLowerCase();
@@ -24,6 +24,21 @@ angular.module('global',[]).service('_global', ['$q', function($q){
 			}
 		};
 	}
+	this.cloneObj = function(obj){
+	    var str, newobj = obj.constructor === Array ? [] : {};
+	    if(typeof obj !== 'object'){
+	        return;
+	    } else if(window.JSON){
+	        str = JSON.stringify(obj), //系列化对象
+	        newobj = JSON.parse(str); //还原
+	    } else {
+	        for(var i in obj){
+	            newobj[i] = typeof obj[i] === 'object' ? 
+	            cloneObj(obj[i]) : obj[i]; 
+	        }
+	    }
+	    return newobj;
+	};
 	Array.prototype.deleteById=function(id){
 		// console.log(this.dataResultItem);
 		for(var i in this){

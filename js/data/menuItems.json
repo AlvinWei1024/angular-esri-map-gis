@@ -2,140 +2,121 @@
 	{	
 		"id":"1",
 		"name":"基础地理",
-		"parent":null,
 		"selected":false,
 		"icon":"glyphicon-stats text-primary-dker",
-		"submenu":[
+		"submenus":[
 			{	
 				"id":"1-1",
 				"name":"南极遥感",
-				"parent":"1",
 				"selected":false,
 				"icon":"url",
-				"submenu":[
+				"submenus":[
 					{	"id":"1-1-1",
 						"name":" 南极周边",
-						"parent":"1-1",
 						"selected":false,
 						"icon":"url",
-						"submenu":[]
+						"submenus":[]
 					},
 					{	"id":"1-1-2",
 						"name":" 南极数据",
-						"parent":"1-1",
 						"selected":false,
 						"icon":"url",
-						"submenu":[]
+						"submenus":[]
 					},
 					{	"id":"1-1-3",
 						"name":" 南极遥感",
-						"parent":"1-1",
 						"selected":false,
 						"icon":"url",
-						"submenu":[]
+						"submenus":[]
 					}
 				]
 			},
 			{	"id":"1-2",
 				"name":"标本样品",
-				"parent":"1",
 				"selected":false,
 				"icon":"url",
-				"submenu":[
+				"submenus":[
 					{	"id":"1-1-1",
 						"name":"南极周边",
-						"parent":"1-1",
 						"selected":false,
 						"icon":"url",
-						"submenu":[]
+						"submenus":[]
 					},
 					{	"id":"1-1-2",
 						"name":"南极数据2",
-						"parent":"1-1",
 						"selected":false,
 						"icon":"url",
-						"submenu":[]
+						"submenus":[]
 					},
 					{	"id":"1-1-3",
 						"name":"南极遥感113",
-						"parent":"1-1",
 						"selected":false,
 						"icon":"url",
-						"submenu":[]
+						"submenus":[]
 					}
 				]
 			},
 			{	"id":"1-3",
 				"name":"实时气象",
-				"parent":"1",
 				"selected":false,
 				"icon":"url",
-				"submenu":[]
+				"submenus":[]
 			}
 		]
 	},
 	{	
 		"id":"2",
 		"name":"专题数据",
-		"parent":null,
 		"selected":false,
 		"icon":"glyphicon-calendar text-info-dker",
-		"submenu":[
+		"submenus":[
 			{	"id":"2-1",
 				"name":"南极遥感",
-				"parent":"2",
 				"selected":false,
 				"icon":"url",
-				"submenu":[]
+				"submenus":[]
 			}
 		]
 	},
 	{	
 		"id":"3",
 		"name":"空间服务",
-		"parent":null,
 		"selected":false,
 		"icon":"glyphicon-envelope text-info-lter",
-		"submenu":[
+		"submenus":[
 			{	"id":"2",
 				"name":"南极遥感",
-				"parent":"1",
 				"selected":false,
 				"icon":"url",
-				"submenu":[]
+				"submenus":[]
 			}
 		]
 	},
 	{	
 		"id":"4",
 		"name":"成果产品",
-		"parent":null,
 		"selected":false,
 		"icon":"glyphicon-th-large text-success",
-		"submenu":[
+		"submenus":[
 			{	"id":"2",
 				"name":"成果产品2",
-				"parent":"1",
 				"icon":"url",
-				"submenu":[
+				"submenus":[
 					{	
 						"id":"2",
 						"name":"成果产品3",
-						"parent":"1",
 						"icon":"url",
-						"submenu":[
+						"submenus":[
 							{	
 								"id":"2",
 								"name":"成果产品4",
-								"parent":"1",
 								"icon":"url",
-								"submenu":[
+								"submenus":[
 									{	
 										"id":"2",
 										"name":"成果产品5",
-										"parent":"1",
 										"icon":"url",
-										"submenu":[]
+										"submenus":[]
 									}
 								]
 							}

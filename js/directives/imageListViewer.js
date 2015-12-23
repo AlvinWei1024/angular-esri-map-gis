@@ -1,5 +1,5 @@
 angular.module('imageListViewer',[])
-.directive("imageListViewer",["$timeout",function($timeout){
+.directive("imageListViewer",["$timeout","_global",function($timeout,_config){
 	return {
         restrict: 'AE',
         scope: {
@@ -8,7 +8,7 @@ angular.module('imageListViewer',[])
         templateUrl: 'tpl/viewer-tpl.html',
         replace: true,
         link: function (scope, element, attr, controller) {
-            
+            scope.http_server=_config.http_server;
             scope.$watch('imageSet',function(n,o){
                 scope.selectIndex=0;
                 scope.currentImg=scope.imageSet[scope.selectIndex];

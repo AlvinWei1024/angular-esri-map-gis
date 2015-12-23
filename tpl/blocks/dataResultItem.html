@@ -60,21 +60,25 @@
                   </div>
                   <article class="media">
                     <div class="media-body">                        
-                      <a href="" class="h4">数据详细描述</a>
+                      <a href="" class="h4">{{dataInfo.name}}-数据详细描述</a>
                       <small class="block m-t-xs" ng-bind="dataInfo.description"></small>
-                      <em class="text-xs">数据创建于 <span class="text-info" ng-bind="dataInfo.date"></span></em>
+                      <em class="text-xs">数据创建于 <span class="text-info" ng-bind="dataInfo.createDate"></span></em>
                     </div>
                   </article>
                   <hr/>
                   
 
-                  <div class="panel-list">
+                  <!-- <div class="panel-list">
                     <span class="panel-lable">所在站点：</span>
                     <span class="panel-value" ng-bind="dataInfo.stationId"></span>
+                  </div> -->
+                  <div class="panel-list">
+                    <span class="panel-lable">联系人：</span>
+                    <span class="panel-value" ng-bind="dataInfo.author"></span>
                   </div>
                   <div class="panel-list">
                     <span class="panel-lable">单位：</span>
-                    <span class="panel-value" ng-bind="dataInfo.author"></span>
+                    <span class="panel-value" ng-bind="dataInfo.execorg"></span>
                   </div>
                   <div class="panel-list">
                     <span class="panel-lable">数据创建时间：</span>
@@ -82,7 +86,7 @@
                   </div>
                   <div class="panel-list">
                     <span class="panel-lable">观测仪器：</span>
-                    <span class="panel-value" ng-bind="dataInfo.monitor"></span>
+                    <span class="panel-value" ng-bind="dataInfo.instrument"></span>
                   </div>
 
 
@@ -98,10 +102,10 @@
                     <span class="panel-lable">最后更新时间：</span>
                     <span class="panel-value" ng-bind="dataInfo.updateTime"></span>
                   </div>
-                  <div class="panel-list">
+                  <!-- <div class="panel-list">
                     <span class="panel-lable">数据调用地址：</span>
                     <span class="panel-value" ng-bind="dataInfo.download-url"></span>
-                  </div>
+                  </div> -->
 
 
                   <div class="m-t-md text-center panel-option">
@@ -120,34 +124,24 @@
               <tab class="height-100" heading="成果图集">
                 <image-list-viewer image-set='images'></image-list-viewer>
               </tab>
+              
               <tab class="height-100" heading="属性">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                    表头xxxxx
+                    {{item.name}}
                   </div>
                   <div class="panel-body b-b b-light">
                     搜索: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
                   </div>
                   <div>
-                    <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="10">
+                    <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="1">
                       <thead>
                         <tr>
-                            <!-- <th data-toggle="true">
-                                First Name
-                            </th>
-                            <th>
-                                Last Name
-                            </th>
-                            <th data-hide="phone,tablet">
+                        <!-- <th data-hide="phone,tablet" class="footable-visible footable-sortable">
                                 Job Title
-                            </th>
-                            <th data-hide="phone,tablet" data-name="Date Of Birth">
-                                DOB
-                            </th>
-                            <th data-hide="phone">
-                                Status
-                            </th> -->
-                            <th ng-repeat="title in titles">{{title}}</th>
+                            <span class="footable-sort-indicator"></span></th> -->
+                            <!-- <th data-toggle="true" ng-repeat="(i,title) in titles">{{title}}</th> -->
+                            <th ng-repeat="(i,title) in titles" data-hide="phone,tablet" >{{title}}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -159,17 +153,11 @@
                         </tr>
                       </tbody>
                        <!-- <tfoot class="hide-if-no-paging"> -->
-                      <tfoot>
-                        <tr>
-                            <td colspan="5" class="text-center">
-                                <ul class="pagination"></ul>
-                            </td>
-                        </tr>
-                      </tfoot>
+                      
                     </table>
                   </div>
                 </div>
-              </tab>
+              </tab> 
             </tabset>
           </div>
         </div>

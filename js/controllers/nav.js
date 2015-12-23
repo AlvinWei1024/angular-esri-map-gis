@@ -11,7 +11,6 @@ angular.module("app")
         var menu_items_url=_config.http_server+'menus'; 
 
         //to fixed
-        menu_items_url='js/data/menuItems.json';
         $http.get(menu_items_url).success(function(result) {
             treeViewData=result;
             $scope.navData=treeViewData;
@@ -27,13 +26,14 @@ angular.module("app")
             //do nothing
         }
         $scope.emitData=function(data){
-            console.log(data.id)
-            var url='js/data/getDataSetList/'+data.id+'.json';
+            var url=_config.http_server+'dataSets/menu/'+data.id;
+            // var url='js/data/getDataSetList/'+data.id+'.json';
             $http.get(url).success(function(result) {
+                console.log(result)
                 var emit_data={
                     showState:true,
                     title:data.name,
-                    req_data:result
+                    req_data:result.datas
                 }
                 $scope.$emit("nav-to-main-showState", emit_data);
             })

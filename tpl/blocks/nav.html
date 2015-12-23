@@ -18,9 +18,9 @@
                     <span>{{rootNavData.name}}</span>
                 </a>
             </li>
-            <li ng-repeat="navData1 in rootNavData.submenu" ui-sref-active="{{navData1.selected?active:' '}}">
-                <a class="auto" ng-click="navData1.submenu.length?doNothing():emitData(rootNavData)">
-                    <span ng-show="navData1.submenu.length" class="pull-right text-muted">
+            <li ng-repeat="navData1 in rootNavData.submenus" ui-sref-active="{{navData1.selected?active:' '}}">
+                <a class="auto" ng-click="navData1.submenus.length?doNothing():emitData(rootNavData)">
+                    <span ng-show="navData1.submenus.length" class="pull-right text-muted">
                         <i class="fa fa-fw fa-angle-right text"></i>
                         <i class="fa fa-fw fa-angle-down text-active"></i>
                     </span>
@@ -33,9 +33,9 @@
                             <span>{{navData1.name}}</span>
                         </a>
                     </li>
-                    <li ng-repeat="navData2 in navData1.submenu" ui-sref-active="{{navData2.selected?active:' '}}">
-                        <a class="auto" class="click-node" ng-click="navData2.submenu.length?doNothing():emitData(navData2)">
-                            <span ng-show="navData2.submenu.length" class="pull-right text-muted">
+                    <li ng-repeat="navData2 in navData1.submenus" ui-sref-active="{{navData2.selected?active:' '}}">
+                        <a class="auto" class="click-node" ng-click="navData2.submenus.length?doNothing():emitData(navData2)">
+                            <span ng-show="navData2.submenus.length" class="pull-right text-muted">
                                 <i class="fa fa-fw fa-angle-right text"></i>
                                 <i class="fa fa-fw fa-angle-down text-active"></i>
                             </span>
@@ -48,9 +48,9 @@
                                     <span>{{navData2.name}}</span>
                                 </a>
                             </li>
-                            <li ng-repeat="navData3 in navData2.submenu" ui-sref-active="{{navData3.selected?active:' '}}">
-                                <a class="auto" class="click-node" ng-click="navData3.submenu.length?doNothing():emitData(navData3)">
-                                    <span ng-show="navData3.submenu.length" class="pull-right text-muted">
+                            <li ng-repeat="navData3 in navData2.submenus" ui-sref-active="{{navData3.selected?active:' '}}">
+                                <a class="auto" class="click-node" ng-click="navData3.submenus.length?doNothing():emitData(navData3)">
+                                    <span ng-show="navData3.submenus.length" class="pull-right text-muted">
                                         <i class="fa fa-fw fa-angle-right text"></i>
                                         <i class="fa fa-fw fa-angle-down text-active"></i>
                                     </span>
@@ -63,9 +63,9 @@
                                             <span>{{navData3.name}}</span>
                                         </a>
                                     </li>
-                                    <li ng-repeat="navData4 in navData3.submenu" ui-sref-active="{{navData4.selected?active:' '}}">
-                                        <a class="auto" class="click-node" ng-click="navData4.submenu.length?doNothing():emitData(navData4)">
-                                            <span ng-show="navData4.submenu.length" class="pull-right text-muted">
+                                    <li ng-repeat="navData4 in navData3.submenus" ui-sref-active="{{navData4.selected?active:' '}}">
+                                        <a class="auto" class="click-node" ng-click="navData4.submenus.length?doNothing():emitData(navData4)">
+                                            <span ng-show="navData4.submenus.length" class="pull-right text-muted">
                                                 <i class="fa fa-fw fa-angle-right text"></i>
                                                 <i class="fa fa-fw fa-angle-down text-active"></i>
                                             </span>
@@ -78,8 +78,8 @@
                                                     <span>{{navData4.name}}</span>
                                                 </a>
                                             </li>
-                                            <li ng-repeat="navData5 in navData4.submenu" ui-sref-active="{{navData5.selected?active:' '}}">
-                                                <a class="auto" class="click-node" ng-click="navData5.submenu.length?doNothing():emitData(navData5)">
+                                            <li ng-repeat="navData5 in navData4.submenus" ui-sref-active="{{navData5.selected?active:' '}}">
+                                                <a class="auto" class="click-node" ng-click="navData5.submenus.length?doNothing():emitData(navData5)">
                                                     <span class="click-node">{{navData5.name}}</span>
                                                 </a>
                                             </li>

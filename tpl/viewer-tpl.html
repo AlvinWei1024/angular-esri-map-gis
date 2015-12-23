@@ -1,7 +1,20 @@
 <div class="image-list-viewer-cotent">
 	<div class="image-viewer">
-		<img class="image-body {{animation}}" ng-src="{{currentImg.src}}" alt="">
-		<span class="info" ng-bind="currentImg.discription"></span>
+		<img class="image-body {{animation}}" ng-src="{{http_server+'images/'+currentImg.id}}" alt="">
+		<span class="info">
+			<div ng-show="currentImg.fileName">
+				名称：<span ng-bind="currentImg.fileName"></span>
+			</div>
+			<div ng-show="currentImg.execorg">
+				观测单位：<span ng-bind="currentImg.execorg"></span>
+			</div>
+			<div ng-show="currentImg.instrument">
+				观测仪器：<span ng-bind="currentImg.instrument"></span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span ng-show="currentImg.type">观测类型：<span ng-bind="currentImg.type"></span></span>
+			</div>
+			<div ng-show="currentImg.startDateTime">
+				开始时间：<span ng-bind="currentImg.startDateTime"></span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span ng-show="currentImg.endDateTime">结束时间：<span ng-bind="currentImg.endDateTime"></span></span>
+			</div>
+		</span>
 		<span class="pre" ng-click="preImg()">
 			<i class="fa fa-2x fa-arrow-left"></i>
 		</span>
@@ -11,8 +24,8 @@
 	</div>
 	<div class="image-box">
 	  <div class="list-box" ng-repeat="(index,image) in imageSet" ng-click="selectImg(index)">
-	  	<img class="img-list" ng-src="{{image.src}}" alt="">
-	  	<span class="info" ng-bind="image.discription"></span>
+	  	<img class="img-list" ng-src="{{http_server+'images/thumbnail/'+image.id}}" alt="">
+	  	<span class="info" ng-bind="image.fileName"></span>
 	  	<span class="img-masker"></span>
 	  	<span class="img-checked-masker" ng-show="selectIndex==index"></span>
 	  	<i class="fa fa-2x fa-check-circle img-checked" ng-show="selectIndex==index"></i>
