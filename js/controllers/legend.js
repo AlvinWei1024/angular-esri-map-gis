@@ -41,21 +41,22 @@ angular.module("app").controller('legendCtl',['esri_map','_global','$scope',"$ht
 	};
 
 	//提供Legend删除接口
-	$scope.delItem =function(index){
-		if(index>itemData.length-1){
-			return;
-		}
-		
+	
+	$scope.delItem =function(item){
+		// if(index>itemData.length-1){
+		// 	return;
+		// }
+		console.log(item)
 		try{
 			//删除地图中的图层
-			esriMap.removeLayer(itemData[index].type+itemData[index].id);
+			esriMap.removeLayer(item.type+item.id);
 		}
 		catch(e){
 			//
 		}
 		finally{
 			//删除图层对象数组中的图层对象
-			Global.dataResultItem.deleteById($scope.itemData[index].id);
+			Global.dataResultItem.deleteById(item.id);
 		}
 		
 	};

@@ -1,7 +1,7 @@
 <div class="image-list-viewer-cotent">
 	<div class="image-viewer">
 		<img class="image-body {{animation}}" ng-src="{{http_server+'images/'+currentImg.id}}" alt="">
-		<span class="info">
+		<span class="info" ng-click="zoomTo(currentImg)">
 			<div ng-show="currentImg.fileName">
 				名称：<span ng-bind="currentImg.fileName"></span>
 			</div>

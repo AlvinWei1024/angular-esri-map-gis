@@ -19,7 +19,7 @@
                   <div class="clearfix">
                     
                     <div class="result-view-Thumb">
-                      <a class="result-view-img" href="" style="background-image: url({{dataInfo.image}})"></a>
+                      <a class="result-view-img" href="" style="background-image: url({{http_server+dataInfo.image}})"></a>
                     </div>
 
                     <div class="result-view-title">
@@ -82,7 +82,7 @@
                   </div>
                   <div class="panel-list">
                     <span class="panel-lable">数据创建时间：</span>
-                    <span class="panel-value" ng-bind="dataInfo.date"></span>
+                    <span class="panel-value" ng-bind="dataInfo.createDate"></span>
                   </div>
                   <div class="panel-list">
                     <span class="panel-lable">观测仪器：</span>
@@ -147,9 +147,9 @@
                       <tbody>
                         <tr ng-repeat="data in dataGrid">
                           <td ng-repeat="title in titles">{{data[title]}}</td>
-                          <td>
+                          <!-- <td>
                             <span class="btn btn-sm btn-info" title="定位到" ng-click="locationTo(data)"><i class="icon icon-pointer"></i>定位到</span>
-                          </td>
+                          </td> -->
                         </tr>
                       </tbody>
                        <!-- <tfoot class="hide-if-no-paging"> -->
@@ -158,6 +158,7 @@
                   </div>
                 </div>
               </tab> 
+
             </tabset>
           </div>
         </div>

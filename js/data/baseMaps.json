@@ -24,19 +24,11 @@
     "layers":["http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer"]
   },
   {
-    "index":21,
-    "title":"北极影像",
-    "projection":"North",
-    "zoom":7,
-    "thumbnailUrl":"http://localhost:8000/img/basemap-gallery/northsite.png",
-    "layers":["http://services.arcgisonline.com/arcgis/rest/services/Polar/Arctic_Imagery/MapServer"]
-  },
-  {
     "index":22,
     "title":"北极",
     "projection":"North",
     "zoom":7,
     "thumbnailUrl":"http://localhost:8000/img/basemap-gallery/north.png",
-    "layers":["http://services.arcgisonline.com/arcgis/rest/services/Polar/Arctic_Ocean_Base/MapServer"]
+    "layers":["http://202.121.66.51:6688/arcgis/rest/services/%E5%8C%97%E6%9E%81%E5%85%A8%E5%9B%BEtiles/MapServer"]
   }
 ]

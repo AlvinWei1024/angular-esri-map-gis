@@ -9,7 +9,7 @@
         <div class='result-content'>
           <div ng-repeat="dataItem in dataList" class="result-view-content clearfix">
             <div class="result-view-Thumb  tableCellContainer">
-              <a class="result-view-img" href="" style="background-image: url({{dataItem.image}})" alt="" ng-click="showDetails(dataItem)"></a>
+              <a class="result-view-img" href="" style="background-image: url({{http_server+dataItem.image}})" alt="" ng-click="showDetails(dataItem)"></a>
             </div>
             <div class="result-view-title tableCellContainer">
               <div class="info"  ng-click="showDetails(dataItem)">

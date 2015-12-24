@@ -26,6 +26,7 @@ angular.module("app")
             //do nothing
         }
         $scope.emitData=function(data){
+            console.log(data)
             var url=_config.http_server+'dataSets/menu/'+data.id;
             // var url='js/data/getDataSetList/'+data.id+'.json';
             $http.get(url).success(function(result) {

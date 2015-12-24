@@ -2,14 +2,13 @@
  * Created by ALVIN on 2015/7/9.
  */
 
-angular.module('esri',[]).service('esri_map',function($timeout,$q){
+angular.module('esri',[]).service('esri_map',['$timeout','$q','_global',function($timeout,$q,_config){
     var projectionServerURL='http://202.121.66.51:6688/arcgis/rest/services/Utilities/Geometry/GeometryServer';
     var self=this;
     this.map;
     this.mapDerfer= $q.defer();
     this.addLayerDerfer= $q.defer();
     this.wkid='Mercator';//South,North
-
     //var mapDeferred = $q.defer();
     var navToolbar;
     require(["esri/dijit/BasemapGallery","esri/dijit/Basemap","esri/dijit/BasemapLayer"], function (BasemapGallery,Basemap,BasemapLayer){
@@ -91,6 +90,14 @@ angular.module('esri',[]).service('esri_map',function($timeout,$q){
                     resetMap(self.map)
                     currentProjection=option.projection;
                     self.wkid=currentProjection;
+
+                    //delete all dataResultItem
+                    for(var i in _config.dataResultItem){
+                        if(_config.dataResultItem[i]) _config.dataResultItem.deleteById(_config.dataResultItem[i].id);
+                    }
+                    
+                    // console.log(_config.dataResultItem)
+
                 }
             }
             else{
@@ -283,27 +290,57 @@ angular.module('esri',[]).service('esri_map',function($timeout,$q){
                        // console.log(map.spatialReference.wkid);
                           return map.spatialReference.wkid;
                     };
-        require(["esri/layers/ArcGISTiledMapServiceLayer","esri/layers/ArcGISDynamicMapServiceLayer","esri/layers/ArcGISImageServiceLayer","esri/layers/FeatureLayer"],
-        function(ArcGISTiledMapServiceLayer,ArcGISDynamicMapServiceLayer,ArcGISImageServiceLayer,FeatureLayer){
-            self.addLayer=function(url,type,option){
+
+
+        require(["esri/layers/ArcGISTiledMapServiceLayer","esri/layers/ArcGISDynamicMapServiceLayer",
+            "esri/layers/ArcGISImageServiceLayer","esri/layers/FeatureLayer",
+            "esri/InfoTemplate"],
+        function(ArcGISTiledMapServiceLayer,ArcGISDynamicMapServiceLayer,
+            ArcGISImageServiceLayer,FeatureLayer,
+            InfoTemplate){
+            self.addLayer=function(url,type,option,template){
                 if(url){
                     if(type){
                         var maplayer;
                         switch (type){
                             case 'ArcGISTiledMapServiceLayer':{
+                                var infoTemplates={};
+                                template.map(function(val,i){
+                                    infoTemplates[i]={
+                                        infoTemplate:new InfoTemplate('T',val)
+                                    }
+                                });
                                 maplayer = new ArcGISTiledMapServiceLayer(url,option);
+                                maplayer.setInfoTemplates(infoTemplates);
+                                
+
                                 break;
                             }
                             case 'ArcGISDynamicMapServiceLayer':{
+                                
+                                var infoTemplates={};
+                                template.map(function(val,i){
+                                    infoTemplates[i]={
+                                        infoTemplate:new InfoTemplate('T',val)
+                                    }
+                                });
+
                                 maplayer = new ArcGISDynamicMapServiceLayer(url,option);
+                                maplayer.setInfoTemplates(infoTemplates);
+
                                 break;
                             }
                             case 'ArcGISImageServiceLayer':{
+                                
+                                var infoTemplate=new InfoTemplate('T',val[0])
                                 maplayer = new ArcGISImageServiceLayer(url,option);
+                                maplayer.setInfoTemplate(infoTemplate);
                                 break;
                             }
                             case 'FeatureLayer':{
+                                var infoTemplate=new InfoTemplate('T',val[0])
                                 maplayer = new FeatureLayer(url,option);
+                                maplayer.setInfoTemplate(infoTemplate);
                                 break;
                             }
                             default :{
@@ -328,10 +365,106 @@ angular.module('esri',[]).service('esri_map',function($timeout,$q){
             self.removeLayer=function(layerID){
                 self.map.removeLayer(self.map.getLayer(layerID));
             }
+            self.wkidCheck=function(url,type){
+                
+                var maplayer;
+                switch (type){
+                    case 'ArcGISTiledMapServiceLayer':{
+                        maplayer = new ArcGISTiledMapServiceLayer(url);
+                        break;
+                    }
+                    case 'ArcGISDynamicMapServiceLayer':{
+                        maplayer = new ArcGISDynamicMapServiceLayer(url);
+                        break;
+                    }
+                    case 'ArcGISImageServiceLayer':{
+                        maplayer = new ArcGISImageServiceLayer(url);
+                        break;
+                    }
+                    case 'FeatureLayer':{
+                        maplayer = new FeatureLayer(url);
+                        break;
+                    }
+                    default :{
+                        throw new Error(type+" is not available");
+                    }
+                }
+
+                self.wkidDeffer=$q.defer();
+                maplayer.on('load',function(){
+                    var wkid=maplayer.spatialReference.wkid;
+                    self.wkidDeffer.resolve(wkid);
+                });
+
+            }
         });
+
+        // addPoint & addMultPoint
+        require(['esri/layers/GraphicsLayer','esri/graphic','esri/geometry/Point',
+            'esri/symbols/SimpleMarkerSymbol','esri/symbols/SimpleLineSymbol',
+            'esri/Color','esri/InfoTemplate'],
+        function(GraphicsLayer,Graphic,Point,
+                SimpleMarkerSymbol,SimpleLineSymbol,
+                Color,InfoTemplate){
+            var Colors=[
+                new Color([255,0,0]),
+                new Color([0,255,0]),
+                new Color([0,0,255]),
+                new Color([255,255,0]),
+                new Color([255,255,255]),
+                new Color([255,0,255]),
+                new Color([255,255,0])
+            ];
+            function getColor(){
+                var index=Math.floor(Math.random()*Colors.length);
+                return Colors[index];
+            }
+            self.addPoint=function(point,option,attr,templateString,templateTitle){
+                
+                var glayer=new GraphicsLayer(option);
+                var p=new Point(point.x||point[0], point.y||point[1], self.map.spatialReference);
+
+                var symbol=new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE,15,
+                    new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,getColor(),2),getColor());
+                var attributes=attr||{"x":"","y":""};
+                var title=templateTitle||"T";
+                var template=templateString||"经度: ${x} <br/>纬度: ${y} <br/>"
+
+                var infoTemplate = new InfoTemplate(title,template);
+                var g=new Graphic(p, symbol,attributes,infoTemplate);
+                glayer.add(g);
+                // self.map.addLayer(glayer);
+                self.map.graphics.add(g);
+                self.map.centerAt(p);
+            }
+            self.addMultPoint=function(points,option){
+                
+            }
+        });
+        
+        // arcgis 3.15 以上才支持 FeatureTable
+        // require(["esri/layers/FeatureLayer","esri/dijit/FeatureTable"],
+        //     function(FeatureLayer,FeatureTable){
+        //     self.featureTbale=function(elementID,url,hiddenFields){
+        //         var myFeatureLayer = new FeatureLayer(url, {
+        //             outFields:  "*"
+        //         });
+        //         var hiddenField=hiddenFields||[];
+        //         var myTable = new FeatureTable({
+        //           "featureLayer" : myFeatureLayer
+        //           // ,"hiddenFields": hiddenFields  // field that end-user can show, but is hidden on startup
+        //         }, elementID);
+        //         myTable.startup();
+        //     }
+        // });
+        // require(['esri/layers/FeatureLayer','esri/dijit/FeatureTable'],
+        // function(FeatureLayer,FeatureTable){
+            
+        // });
+
         
 //
     }
 
 
-});
+}]);

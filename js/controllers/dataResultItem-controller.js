@@ -9,6 +9,8 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout","_global",'esri
     $scope.dataGrid=[];
     $scope.dataInfo={};
     $scope.item={};
+    
+    $scope.http_server=_config.http_server;
 
     var hideTitle=["id","station"];
     
@@ -32,6 +34,7 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout","_global",'esri
             _config.setItemShowState($scope.item.id,false);
         	var data={showState:false};
             $scope.$emit("resultItem-to-main-showState",data);
+            esriMap.map.graphics.clear();
         }
     };
     $scope.$watch('resultItemShow',function(){
@@ -65,9 +68,10 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout","_global",'esri
             //元数据信息
             var url_info=_config.http_server+'dataSets/'+res.data.id;
             //"js/data/dataItemList/"+res.data.id+".json";
-
+            console.log("url_info",url_info)
             $http.get(url_info).success(function(result) {
                 $scope.dataInfo=result;
+                console.log(result)
 
             }).error(function(e){
                 console.error('request is failed:数据请求失败url:('+url_info+')');
@@ -77,12 +81,12 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout","_global",'esri
             var url_grid=_config.http_server+'rdatas/'+res.data.id;
             $http.get(url_grid).success(function(result) {
                 var rgrid=_config.cloneObj(result);
-                // $scope.dataGrid=rgrid.filter(function(val){
-                //     if(val.id) delete val.id;
-                //     if(val.station) delete val.station;
-                //     return val;
-                // });
-                $scope.dataGrid=rgrid;
+                $scope.dataGrid=rgrid.filter(function(val){
+                    if(val.id) delete val.id;
+                    if(val.station) delete val.station;
+                    return val;
+                });
+                // $scope.dataGrid=rgrid;
                 $scope.titles=getTitles($scope.dataGrid);
 
             }).error(function(e){
@@ -131,8 +135,24 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout","_global",'esri
     $scope.addData=function(obj){
         // 添加数据项
         if(!_config.dataResultItem.containItemById(obj.id)){
-            obj.showState=true;
-            _config.dataResultItem.push(obj);
+            // obj.showState=true;
+            // _config.dataResultItem.push(obj);
+            // // 若为arcgisgis图层
+            // if(_config.isArcGISLayer(obj.type)){
+            // //get data by id
+            //     var req_url=_config.http_server+'geoServices/'+obj.id;
+            //     // var req_url='js/data/'+obj.type+'.json';
+            //     $http.get(req_url).success(function(res){
+            //         if(res){
+            //             if(res.url){
+            //                 esriMap.addLayer(res.url,res.subType,{id:obj.type+obj.id});
+            //             }
+            //         }
+            //     });
+            // }
+            // else{// 如不是arcgis图层
+            //     //to do ...
+            // }
             // 若为arcgisgis图层
             if(_config.isArcGISLayer(obj.type)){
             //get data by id
@@ -141,13 +161,29 @@ app.controller('dataResultItemCtrl',['$scope',"$http","$timeout","_global",'esri
                 $http.get(req_url).success(function(res){
                     if(res){
                         if(res.url){
-                            esriMap.addLayer(res.url,res.subType,{id:obj.type+obj.id});
+                            
+                            esriMap.wkidCheck(res.url,res.subType);
+                            esriMap.wkidDeffer.promise.then(function(wkid){
+
+                                //当底图的wkid与欲加图层wkid一致再添加图层
+                                if(_config.wkidObj[wkid].id==_config.wkidObj[esriMap.map.spatialReference.wkid].id){
+                                    esriMap.addLayer(res.url,res.subType,{id:obj.type+obj.id},res.popupTemplate);
+                                    
+                                    obj.showState=false;
+                                    _config.dataResultItem.push(obj);
+                                }
+                                else{
+                                    alert("请把底图切换到  "+_config.wkidObj[wkid].name+"  投影的底图！")
+                                }
+                            });
                         }
                     }
                 });
             }
             else{// 如不是arcgis图层
                 //to do ...
+                obj.showState=false;
+                _config.dataResultItem.push(obj);
             }
         }
         else{// 删除数据项
